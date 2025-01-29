@@ -1,0 +1,149 @@
+/* AdminDashboard.css */
+
+/* General Layout Styling */
+.container-fluid {
+  margin-top: 20px;
+  
+}
+
+.dashboard {
+  padding: 20px;
+  
+}
+
+.card {
+  margin-bottom: 20px;
+
+  
+}
+
+/* Sidebar Styling */
+.sidebar {
+  display: flex;
+  position:relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 250px;
+  z-index: 100;
+  padding-top: 20px;
+  height: 100vh;
+}
+
+.sidebar .nav-item {
+  margin-bottom: 15px;
+  
+}
+
+.sidebar .nav-link {
+  
+  font-size: 16px;
+  padding: 12px 20px;
+  color: #333;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.sidebar .nav-link.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.sidebar .nav-link:focus {
+  outline: none;
+}
+
+/* Content Area */
+.main-content {
+  padding-left: 260px; /* To make space for sidebar */
+}
+
+.dashboard h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.card-text {
+  margin-bottom: 15px;
+}
+
+/* Button Styling */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.card {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .main-content {
+    padding-left: 200px; /* Adjust content to fit sidebar */
+  }
+
+  .col-md-6 {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Hide sidebar on small screens */
+  .sidebar {
+    display: none;
+  }
+
+  /* Make the main content area full width */
+  .main-content {
+    padding-left: 0;
+  }
+
+  /* Stacked cards on smaller screens */
+  .col-md-6 {
+    margin-bottom: 15px;
+  }
+
+  /* Adjust card padding for mobile */
+  .card-body {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard h2 {
+    font-size: 24px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+}

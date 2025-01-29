@@ -1,0 +1,265 @@
+.h3 {
+  color: #6ed1f6;
+}
+
+/* Banner start */
+.healthcare-banner-container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ece9ea;
+  padding: 20px 50px;
+  color: rgb(0, 0, 0);
+}
+
+.healthcare-banner-content {
+  max-width: 50%;
+}
+
+.healthcare-banner-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: left;
+}
+
+.healthcare-banner-subtitle {
+  font-size: 1rem;
+  color: #0e0f11;
+  text-align: left;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.healthcare-banner-image {
+  width: 100%;
+  max-height: 300px;
+  max-width: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Banner end */
+
+/* Location with packages start */
+.healthcare-location-with-packages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.healthcare-sidebar {
+  width: 100%;
+  height: 100;
+  max-width: 350px;
+  background:#e0f9f4;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  
+}
+
+.healthcare-sidebar h3 {
+  margin-bottom: 20px;
+}
+
+.healthcare-location-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.healthcare-location-item {
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.healthcare-location-item:hover,
+.healthcare-location-item.active {
+  background: #85ead4;
+  color: #fff;
+  border-color: #85ead4;
+ 
+}
+
+.healthcare-main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color:#eaf8f5;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+/* Package card styles */
+.healthcare-package-card {
+  border-radius: 8px;
+  padding: 0;
+  
+}
+
+.healthcare-package-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #85ead4;
+  color: white;
+  border-radius: 8px;
+  margin-bottom: 5px;
+  gap: 10px;
+ 
+}
+
+.healthcare-package-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.healthcare-package-header-right .btn {
+  background: #85ead4;
+  color: #fff;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.healthcare-package-header-right .btn:hover {
+  background: #f2a0aa;
+}
+
+.healthcare-dropdown-content {
+  overflow: hidden;
+  max-height: 0;
+  padding: 0;
+  background-color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+}
+
+.healthcare-dropdown-content.expand {
+  max-height: 500px; /* Adjust as necessary */
+  padding: 20px;
+}
+
+.healthcare-package-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.healthcare-package-features h5 {
+  margin-top: 20px;
+  color: #007bff;
+}
+
+.healthcare-package-features ul {
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+/* Location cards start */
+.l-cards-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.l-card-item {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  width: 300px;
+  overflow: hidden;
+}
+
+.l-card-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.l-card-item .l-card-body {
+  padding: 15px;
+}
+
+.l-card-body .location-icon {
+  color: #0d6efd;
+  font-size: 24px;
+}
+
+.l-card-body h5 {
+  font-size: large;
+}
+
+.l-card-body p {
+  font-size: small;
+}
+
+.l-card-body a {
+  color: #0d6efd;
+  display: block;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .healthcare-banner-content {
+    max-width: 100%;
+  }
+
+  .healthcare-location-with-packages {
+    flex-direction: column;
+  }
+
+  .healthcare-sidebar,
+  .healthcare-main-content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .healthcare-package-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .healthcare-package-header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .healthcare-package-header-right .btn {
+    width: auto;
+  }
+
+  .healthcare-banner-title {
+    font-size: 1.5rem;
+  }
+
+  .healthcare-banner-subtitle {
+    font-size: 0.9rem;
+  }
+}
+@media (max-width: 1044px) {
+  .healthcare-sidebar {
+    display: flex;
+    flex: 2;
+    width: 100vw;
+    flex-direction: column;
+    
+  }
+  .healthcare-location-with-packages {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+  }
+  .healthcare-sidebar {
+    width: 100%;
+    max-width: 100%;
+    
+  }
+}

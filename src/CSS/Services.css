@@ -1,0 +1,118 @@
+.services-section {
+  height: 100%;
+  background: #fbfafa;
+  padding: 60px 20px;
+}
+
+.services-section h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.services-section p {
+  font-size: 1.2rem;
+  color: #6c757d;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-bottom: 20px;
+}
+
+.servicebutton {
+  display: block;
+  margin: 20px auto;
+  background: #fb9049;
+  border-radius: 8px;
+  height: 35px;
+  width: 150px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.servicebutton:hover {
+  background: #e07b3e;
+}
+
+.services-section .card {
+  border-radius: 8px;
+  text-align: center;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  background-color: #fafafa;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  max-width: 100%; /* Ensure card doesn't overflow its container */
+  min-height: 350px; /* Set a consistent minimum height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.services-section .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.services-section .card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #512222;
+  margin-bottom: 0.75rem;
+}
+
+.services-section .card-text {
+  font-size: 1rem;
+  color: #6c757d;
+}
+
+.services-section .btn-link {
+  color: #007bff;
+  text-decoration: none;
+  margin-top: auto; /* Push link to the bottom if possible */
+}
+
+.services-section .btn-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+.card {
+  flex-wrap: wrap;
+}
+.card .card-body {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Media Queries */
+@media (max-width: 991px) {
+  .services-section .card {
+    margin-bottom: 20px;
+  }
+
+  .services-section .col-lg-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .services-section h1 {
+    font-size: 1.75rem;
+  }
+
+  .services-section .card {
+    padding: 15px;
+  }
+
+  .services-section .card-title {
+    font-size: 1.1rem;
+  }
+
+  .services-section .card-text {
+    font-size: 0.9rem;
+  }
+}

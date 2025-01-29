@@ -1,0 +1,51 @@
+.appointments-add-container {
+  width: 100%;
+  height: 80%;
+}
+
+/* Add custom CSS for responsive design */
+.card-container {
+  position: relative;
+  height: 100%;
+}
+
+.form-card-body{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.appointments-add-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 60%;
+  background: var(--primary-color, #ffffff); /* Default primary color */
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+  
+  /* Make the container responsive for smaller screens */
+  @media (max-width: 720px) {
+    .appointments-add-form {
+      width: 100%;
+        display: flex;
+        flex-direction: column;
+        max-width: 80%;
+    }
+  }
+  @media (max-width: 576px) {
+    .btn {
+      width: 100%;
+    }
+  }
+  
+  /* Adjust the text size for smaller screens */
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  

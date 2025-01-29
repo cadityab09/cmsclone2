@@ -1,0 +1,167 @@
+/* Custom CSS for Clinic Room Management */
+.rooms-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  gap: 10px;
+}
+.room-card-col {
+  display: flex;
+  justify-content: left;
+  flex: 1;  
+}
+.room-card-col .card {
+  /* margin: 0 auto; */
+  display: flex;
+  justify-self: flex-start;
+}
+.card.clinic-card {
+  flex-wrap: wrap;
+  min-width: 152px;
+  width: 100%;
+}
+
+
+
+.modal {
+  width: 100% !important;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.modal .modal-content {
+  text-align: center;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.add-room-form {
+  margin-top: 0;
+  margin-left: 50px;
+}
+
+.container {
+  margin-top: 20px; /* Adjusted for better visibility */
+  display: inline;
+}
+
+.modal-header .btn-close {
+  position: relative;
+    top: -70px;
+    right: -13px;
+}
+
+/* Small devices (phones, 600px and below) */
+@media (max-width: 600px) {
+  .clinic-card {
+    width: 100% !important;
+    font-size: 0.9rem;
+  }
+
+  .clinic-title {
+    font-size: 1.25rem;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .add-room-form {
+    margin-left: 10px; /* Adjust form margin for small screens */
+  }
+
+  .modal-header {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    font-size: 0.875rem;
+  }
+}
+
+/* Medium devices (tablets, 601px to 768px) */
+@media (min-width: 601px) and (max-width: 768px) {
+  .clinic-card {
+    width: 90% !important;
+  }
+
+  .clinic-title {
+    font-size: 1.5rem;
+  }
+
+  .modal-content {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  .add-room-form {
+    margin-left: 30px; /* Adjust form margin for medium screens */
+  }
+
+  .modal-header {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+  }
+}
+
+/* Large devices (desktops, 769px and above) */
+@media (min-width: 769px) {
+  .clinic-card {
+    width: 220px !important;
+  }
+
+  .clinic-title {
+    font-size: 1.75rem;
+  }
+
+  .modal-content {
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  .add-room-form {
+    margin-left: 50px; /* Default form margin for large screens */
+  }
+
+  .modal-header {
+    font-size: 1.75rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+/* Additional Bootstrap Utility Overrides */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-dialog {
+  max-width: none;
+  margin: 1.75rem auto;
+}
+
+.modal-content {
+  border-radius: 0.5rem;
+  padding: 1rem; /* Add padding for better spacing */
+}
+
+.btn-close {
+  background-color: transparent;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: #000;
+  opacity: 0.5;
+}
+
+.btn-close:hover {
+  color: #000;
+  opacity: 0.75;
+}

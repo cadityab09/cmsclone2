@@ -1,0 +1,58 @@
+.main-view {
+    background-color: #f9f9f9;
+    height: calc(100vh - 60px);
+    width: calc(100vw - 0px);
+    /* border: 10px solid black; */
+}
+
+.side-navbar {
+    width: 230px;
+    position: absolute;
+    z-index: 10;
+}
+
+.main-content {
+    background-color: #f9f9f9;
+    height: calc(100vh - 60px);
+    width: calc(100vw - 0px);
+    
+}
+
+.main-content-routes {
+    position: relative;
+    left: 230px;
+    height: calc(100vh - 60px);
+    width: calc(100vw - 230px);
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+}
+.main-content-routes::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Edge */
+}
+
+@media (max-width: 2560px) {
+    .main-content-routes {
+        position: relative;
+        left: 230px;
+        height: calc(100vh - 60px);
+        width: calc(100vw - 230px);
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;
+    }
+} 
+
+@media (max-width: 991px) {
+    .main-content-routes {
+        position: relative;
+        left: 0;
+        height: calc(100vh - 60px);
+        width: calc(100vw - 0px);
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;
+    }
+}
+
+

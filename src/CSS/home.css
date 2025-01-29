@@ -1,0 +1,47 @@
+/* Ensure the container takes full viewport height and centers content */
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-image: url('../assets//img/home.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+  }
+  
+  .home-content {
+    max-width: 800px;
+    /* margin-left: 50px; */
+  }
+  
+  .home-heading {
+    font-size: 1.0rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: white;
+    margin-top: 300px;
+  }
+  
+  .home-text {
+    font-size: 30px; /* Decreased from 50px */
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
+  
+  
+  /* Responsive adjustments */
+  @media (min-width: 992px) {
+    .home-heading {
+      font-size: 3.5rem;
+    }
+  
+    .home-text {
+      font-size: 1.5rem;
+    }
+  }
+  

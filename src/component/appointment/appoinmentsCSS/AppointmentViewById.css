@@ -1,0 +1,57 @@
+/* Custom CSS for responsive design */
+
+/* Center the form for medium screens and up */
+@media (min-width: 576px) {
+    .card {
+      max-width: 500px;
+      margin: auto;
+    }
+  }
+  
+  /* Mobile-specific adjustments */
+  @media (max-width: 576px) {
+    .container-fluid {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  
+    .card {
+      width: 100%;
+      margin-top: 20px;
+    }
+  
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+  
+    .d-flex {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .btn {
+      width: 100%;
+    }
+  }
+  
+  /* Adjusting the text size and padding for smaller devices */
+  @media (max-width: 576px) {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Card padding adjustment for tablets */
+  @media (max-width: 768px) {
+    .card-body {
+      padding: 1rem;
+    }
+  }
+  
+  /* Custom margin for the "Back to List" button */
+  @media (max-width: 576px) {
+    .btn-danger {
+      margin-top: 10px;
+    }
+  }
+  

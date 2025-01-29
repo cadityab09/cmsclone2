@@ -1,0 +1,129 @@
+.add-enquiry-form-container {
+  padding: 20px;
+  max-width: 80%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.add-enquiry-form-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.add-enquiry-form {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 80%;
+  margin: 0 auto;
+}
+
+.add-enquiry-form .form-group {
+  margin-bottom: 15px;
+}
+
+.add-enquiry-form input,
+.add-enquiry-form select,
+.add-enquiry-form textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.add-enquiry-form label {
+  width: 100%;
+}
+
+.add-enquiry-form input:focus,
+.add-enquiry-form select:focus,
+.add-enquiry-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.add-enquiry-form button {
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-enquiry-form button:hover {
+  background-color: #0056b3;
+}
+
+.add-enquiry-form button:active {
+  background-color: #003f7d;
+}
+
+/* Media Queries for responsiveness */
+
+/* Medium Screens and Below (Tablet) */
+@media (max-width: 768px) {
+  .add-enquiry-form-container {
+    padding: 15px;
+    max-width: 100%;
+    /* justify-content: center; */
+  }
+
+  .add-enquiry-form {
+    padding: 15px;
+    margin: 0 auto;
+  }
+
+  .add-enquiry-form h1 {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .add-enquiry-form input,
+  .add-enquiry-form select,
+  .add-enquiry-form textarea {
+    font-size: 0.95rem;
+    padding: 8px;
+  }
+
+  .add-enquiry-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+/* Small Screens and Below (Mobile) */
+@media (max-width: 480px) {
+  .add-enquiry-form-container {
+    padding: 10px;
+  }
+
+  .add-enquiry-form {
+    padding: 10px;
+  }
+
+  .add-enquiry-form h1 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .add-enquiry-form input,
+  .add-enquiry-form select,
+  .add-enquiry-form textarea {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+
+  .add-enquiry-form button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}

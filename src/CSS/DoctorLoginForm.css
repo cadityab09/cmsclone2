@@ -1,0 +1,47 @@
+/* For custom background shapes */
+.shape {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.shape:first-child {
+  background: linear-gradient(#1845ad, #23a2f6);
+  left: -50px;
+  top: -50px;
+}
+
+.shape:last-child {
+  background: linear-gradient(to right, #ff512f, #f09819);
+  right: -50px;
+  bottom: -50px;
+}
+
+/* Background video styling */
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .shape:first-child {
+      left: -30px;
+      top: -30px;
+  }
+
+  .shape:last-child {
+      right: -30px;
+      bottom: -30px;
+  }
+
+  .doctor-login-form {
+      padding: 20px;
+  }
+}

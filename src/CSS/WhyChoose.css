@@ -1,0 +1,100 @@
+.why-choose {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.why-choose-content {
+  max-width: 600px;
+}
+
+.why-choose-content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.why-choose-content p {
+  font-size: 1rem;
+  margin-bottom: 30px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-item img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.stat-item span {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.why-choose-image img {
+  max-width: 100%;
+  border-radius: 8px;
+  height: 430px; /* This will maintain a fixed height for larger screens */
+}
+
+/* Media Queries */
+
+/* Medium Screens and Below (Tablet) */
+@media (max-width: 768px) {
+  .why-choose {
+    flex-direction: column; /* Stack content vertically */
+    text-align: center;
+  }
+
+  .why-choose-content {
+    margin-bottom: 20px;
+  }
+
+  .why-choose-image img {
+    height: auto; /* Allow height to adjust dynamically */
+  }
+
+  .stats {
+    justify-content: center;
+    gap: 15px; /* Reduce the gap between items on smaller screens */
+  }
+}
+
+/* Small Screens and Below (Mobile) */
+@media (max-width: 576px) {
+  .why-choose-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .why-choose-content p {
+    font-size: 0.9rem;
+  }
+
+  .stat-item span {
+    font-size: 1.2rem;
+  }
+
+  .stat-item img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .why-choose-image img {
+    max-height: 300px; /* Adjust the image size on very small screens */
+  }
+}

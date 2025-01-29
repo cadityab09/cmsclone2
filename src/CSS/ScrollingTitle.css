@@ -1,0 +1,12 @@
+.scrollable-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  
+  .scrollable-content {
+    display: inline-block;
+    white-space: nowrap;
+    transition: transform 0.1s linear;
+  }
+  
