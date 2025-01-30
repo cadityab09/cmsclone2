@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../CSS/Header.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Maulilogo from '../assets/Images/mauli_logo.webp';
 import AppServices from "../services/AppServices"; // Import AppServices
 
@@ -43,7 +43,7 @@ const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServ
 
         <nav className="main-nav">
           <ul className="">
-            <Link to="/"><div className="p-3 hospital-title">Mauli Hospital</div></Link>
+            <div className="p-3 hospital-title">Mauli Hospital</div>
             <div className="headerspace d-flex">
               <li onClick={scrollToWhyChoose}><span >Home</span></li>
               <li onClick={scrollToWhyChoose}><span >About</span></li>
