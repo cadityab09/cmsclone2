@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { RiMicroscopeLine } from "react-icons/ri";
-import { MdHealthAndSafety } from "react-icons/md";
-import { FaHeartbeat } from "react-icons/fa";
+import React from "react";
+// import { RiMicroscopeLine } from "react-icons/ri";
+// import { MdHealthAndSafety } from "react-icons/md";
+// import { FaHeartbeat } from "react-icons/fa";
 // import '../CSS/Services.css'; // Custom CSS
 // import ServiceForm from '../DoctorComponents/AddServiceForm'; // Import the ServiceForm component
 
@@ -39,12 +39,12 @@ const ViewServices = ({servicesData, setServicesData}) => {
 //     ],
 //   });
 
-  const addOrUpdateService = (newServiceData) => {
-    setServicesData((prevData) => ({
-      ...prevData,
-      services: [...prevData.services, newServiceData], // Add new service to the list
-    }));
-  };
+  // const addOrUpdateService = (newServiceData) => {
+  //   setServicesData((prevData) => ({
+  //     ...prevData,
+  //     services: [...prevData.services, newServiceData], // Add new service to the list
+  //   }));
+  // };
 
   return (
     <div className="services-section py-5">

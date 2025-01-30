@@ -35,7 +35,7 @@ const Hero = () => {
     }, 5000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [heroImages.length]);
 
   const goToSlide = (index) => {
     setCurrentSlide(index);

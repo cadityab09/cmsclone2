@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure Bootstrap is imported
 import "../DoctorCSS/AddPatient.css";
 import axios from 'axios'; // Import axios
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 function AddPatient() {
   const [isMarried, setIsMarried] = useState(false);

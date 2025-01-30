@@ -5,17 +5,17 @@ import Maulilogo from '../assets/Images/mauli_logo.webp';
 import AppServices from "../services/AppServices"; // Import AppServices
 
 const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServices }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isMainMenuOpen, setisMainMenuOpen] = useState(false);
+  // const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMainMenuOpen, setisMainMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({ title: '', dateTime: '', description: '' });
 
   const navigate = useNavigate(); // Use navigate
 
-  const toggleDropdown = (status) => setIsDropdownOpen(status);
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleMainMenu = () => setisMainMenuOpen(!isMainMenuOpen);
+  // const toggleDropdown = (status) => setIsDropdownOpen(status);
+  // const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  // const toggleMainMenu = () => setisMainMenuOpen(!isMainMenuOpen);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -38,18 +38,18 @@ const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServ
       {/* Existing Header Code */}
       <div className="header-main px-4">
         <div className="logo">
-          <a href="#"><img src={Maulilogo} alt="Mauli Hospital" /></a>
+          <span ><img src={Maulilogo} alt="Mauli Hospital" /></span>
         </div>
 
         <nav className="main-nav">
           <ul className="">
             <Link to="/"><div className="p-3 hospital-title">Mauli Hospital</div></Link>
             <div className="headerspace d-flex">
-              <li onClick={scrollToWhyChoose}><a href="#">Home</a></li>
-              <li onClick={scrollToWhyChoose}><a href="#">About</a></li>
-              <li onClick={scrollToWhyChoose}><a href="#">Contact Us</a></li>
-              <li><a href="#" onClick={scollTOPackage}>Health Packages</a></li>
-              <li><a href="#">Doctors</a></li>
+              <li onClick={scrollToWhyChoose}><span >Home</span></li>
+              <li onClick={scrollToWhyChoose}><span >About</span></li>
+              <li onClick={scollTODoctor}><span >Contact Us</span></li>
+              <li><span  onClick={scollTOPackage}>Health Packages</span></li>
+              <li><span >Doctors</span></li>
             </div>
           </ul>
         </nav>

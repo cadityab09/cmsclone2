@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
 import Header from './component/Header';
-import Hero from './component/Hero';
+// import Hero from './component/Hero';
 import HealthPackage from './component/HealthPackage';
 // import Location from './component/Location'
 import Footer from './component/Footer'
@@ -23,7 +23,7 @@ import NurseLoginForm from '../src/component/NurseLoginForm'
 // import AddEnquiries from '../src/DoctorComponents/AddEnquiries';
 // import AllPatient from '../src/DoctorComponents/AllPatients';
 
-import Appointment from './component/appointment/Appointment';
+// import Appointment from './component/appointment/Appointment';
 import AppointmentsAdd from './component/appointment/AppointmentsAdd';
 import AppointmentUpdate from './component/appointment/AppointmentUpdate';
 import AppointmentViewById from './component/appointment/AppointmentViewById';
@@ -32,7 +32,7 @@ import About from './component/abouts';
 import Home from './component/home';
 import Services from './component/Services'
 import DoctorInfo from './component/DoctorsInfo'
-import Scroll from './component/ScrollingTitle'
+// import Scroll from './component/ScrollingTitle'
 
 
 function App() {

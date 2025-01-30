@@ -22,6 +22,7 @@ const AddRoom = () => {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:8084/api/beds/add", roomData);
+      console.log(response);
       alert("Room added successfully!");
       setRoomData({
         status: "Available",

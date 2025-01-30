@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "./static/css/main.4a650b02.chunk.css",
+    "main.js": "./static/js/main.20a04147.chunk.js",
+    "main.js.map": "./static/js/main.20a04147.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.927e5608.js",
+    "runtime-main.js.map": "./static/js/runtime-main.927e5608.js.map",
+    "static/css/2.1429c398.chunk.css": "./static/css/2.1429c398.chunk.css",
+    "static/js/2.ac7fe7a2.chunk.js": "./static/js/2.ac7fe7a2.chunk.js",
+    "static/js/2.ac7fe7a2.chunk.js.map": "./static/js/2.ac7fe7a2.chunk.js.map",
+    "static/js/3.f8b04d26.chunk.js": "./static/js/3.f8b04d26.chunk.js",
+    "static/js/3.f8b04d26.chunk.js.map": "./static/js/3.f8b04d26.chunk.js.map",
+    "index.html": "./index.html",
+    "precache-manifest.b53289631d74c8a68b68bc705d70145b.js": "./precache-manifest.b53289631d74c8a68b68bc705d70145b.js",
+    "service-worker.js": "./service-worker.js",
+    "static/css/2.1429c398.chunk.css.map": "./static/css/2.1429c398.chunk.css.map",
+    "static/css/main.4a650b02.chunk.css.map": "./static/css/main.4a650b02.chunk.css.map",
+    "static/js/2.ac7fe7a2.chunk.js.LICENSE.txt": "./static/js/2.ac7fe7a2.chunk.js.LICENSE.txt",
+    "static/media/MauliHospital.webp": "./static/media/MauliHospital.c0866a29.webp",
+    "static/media/about.jpg": "./static/media/about.677f585d.jpg",
+    "static/media/bootstrap-icons.css": "./static/media/bootstrap-icons.cc1e5eda.woff2",
+    "static/media/doc1.jpg": "./static/media/doc1.c3fb1b0d.jpg",
+    "static/media/doc2.jpg": "./static/media/doc2.b50298b3.jpg",
+    "static/media/doc3.jpg": "./static/media/doc3.b3dd5c3f.jpg",
+    "static/media/doc4.jpg": "./static/media/doc4.02bef55a.jpg",
+    "static/media/doc5.jpg": "./static/media/doc5.3a338837.jpg",
+    "static/media/doc6.jpg": "./static/media/doc6.cd1e7912.jpg",
+    "static/media/all.min.css": "./static/media/fa-v4compatibility.a772da7b.woff2",
+    "static/media/font-awesome.min.css": "./static/media/fontawesome-webfont.fee66e71.woff",
+    "static/media/home.css": "./static/media/home.fc6b507f.png",
+    "static/media/mauli_logo.webp": "./static/media/mauli_logo.77676bed.webp",
+    "static/media/video1.mp4": "./static/media/video1.66d8d8ef.mp4",
+    "static/media/video2.mp4": "./static/media/video2.f2fd354d.mp4",
+    "static/media/video3.mp4": "./static/media/video3.c0458d2d.mp4"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.927e5608.js",
+    "static/css/2.1429c398.chunk.css",
+    "static/js/2.ac7fe7a2.chunk.js",
+    "static/css/main.4a650b02.chunk.css",
+    "static/js/main.20a04147.chunk.js"
+  ]
+}

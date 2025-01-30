@@ -3,10 +3,10 @@ import { RiMicroscopeLine } from "react-icons/ri";
 import { MdHealthAndSafety } from "react-icons/md";
 import { FaHeartbeat } from "react-icons/fa";
 import '../CSS/Services.css'; // Custom CSS
-import ServiceForm from './AddServiceForm'; // Ensure this path is correct
+// import ServiceForm from './AddServiceForm'; // Ensure this path is correct
 
 const Services = () => {
-  const [servicesData, setServicesData] = useState({
+  const [servicesData] = useState({
     title: "Our Services",
     description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, quidem.",
     buttonLabel: "See Services",
@@ -38,12 +38,12 @@ const Services = () => {
     ],
   });
 
-  const addOrUpdateService = (newServiceData) => {
-    setServicesData((prevData) => ({
-      ...prevData,
-      services: [...prevData.services, newServiceData],
-    }));
-  };
+  // const addOrUpdateService = (newServiceData) => {
+  //   setServicesData((prevData) => ({
+  //     ...prevData,
+  //     services: [...prevData.services, newServiceData],
+  //   }));
+  // };
 
   return (
     <div className="services-section py-5">

@@ -35,7 +35,7 @@ const PatientExperience = () => {
 
   const renderStars = (rating) => {
     return [...Array(rating)].map((_, index) => (
-      <span key={index} className="star">⭐</span>
+      <span key={index} className="star" role='img'>⭐</span>
     ));
   };
 
