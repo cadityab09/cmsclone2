@@ -226,5 +226,5 @@ class AppServices {
   }
 }
 
-// Exporting an instance of the service for use throughout the application
-export default new AppServices();
+const appServicesInstance = new AppServices();
+export default appServicesInstance;
