@@ -14,118 +14,136 @@ class AppServices {
   }
 
   /**
+   * Fetch all doctors
+   * @returns {Promise<Object[]>} List of doctors
+   */
+  async getAllDoctors() {
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/doctors`, {
+        headers: this.getHeaders(),
+      })
+    );
+  }
+
+  /**
+   * Update the status of a doctor
+   * @param {string} id - Doctor ID
+   * @returns {Promise<Object>} Updated doctor data
+   */
+  async updateDoctorStatus(id) {
+    return this.handleRequest(() =>
+      axios.patch(`${BASE_REST_API_URL}/doctors/${id}/toggle-status`, null, {
+        headers: this.getHeaders(),
+      })
+    );
+  }
+
+  /**
+   * Delete a doctor by ID
+   * @param {string} id - Doctor ID
+   * @returns {Promise<void>} Confirmation of deletion
+   */
+  async deleteDoctor(id) {
+    return this.handleRequest(() =>
+      axios.delete(`${BASE_REST_API_URL}/doctors/${id}`, {
+        headers: this.getHeaders(),
+      })
+    );
+  }
+
+  /**
    * Fetch all appointments
-   * @returns {Promise} Axios response
+   * @returns {Promise<Object[]>} List of appointments
    */
   async getAllAppointments() {
-    try {
-      const response = await axios.get(`${BASE_REST_API_URL}/appointments`, {
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/appointments`, {
         headers: this.getHeaders(),
-      });
-      return response.data;
-    } catch (err) {
-      console.error("Error fetching all appointments:", err);
-      throw err;
-    }
+      })
+    );
   }
 
   /**
    * Create a new appointment
    * @param {Object} appointment - Appointment data
-   * @returns {Promise} Axios response
+   * @returns {Promise<Object>} Created appointment
    */
   async createAppointment(appointment) {
-    try {
-      const response = await axios.post(
-        `${BASE_REST_API_URL}/appointments`,
-        appointment,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error creating appointment:", err);
-      throw err;
-    }
-  }
-
-  /**
-   * Delete an appointment by ID
-   * @param {string} appointmentId - ID of the appointment to delete
-   * @returns {Promise} Axios response
-   */
-  async deleteAppointment(appointmentId) {
-    try {
-      const response = await axios.delete(
-        `${BASE_REST_API_URL}/appointments/${appointmentId}`,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error deleting appointment:", err);
-      throw err;
-    }
+    return this.handleRequest(() =>
+      axios.post(`${BASE_REST_API_URL}/appointments`, appointment, {
+        headers: this.getHeaders(),
+      })
+    );
   }
 
   /**
    * Update an appointment by ID
-   * @param {string} appointmentId - ID of the appointment to update
+   * @param {string} appointmentId - Appointment ID
    * @param {Object} appointment - Updated appointment data
-   * @returns {Promise} Axios response
+   * @returns {Promise<Object>} Updated appointment
    */
   async updateAppointment(appointmentId, appointment) {
-    try {
-      const response = await axios.put(
-        `${BASE_REST_API_URL}/appointments/${appointmentId}`,
-        appointment,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error updating appointment:", err);
-      throw err;
-    }
+    return this.handleRequest(() =>
+      axios.put(`${BASE_REST_API_URL}/appointments/${appointmentId}`, appointment, {
+        headers: this.getHeaders(),
+      })
+    );
+  }
+
+  /**
+   * Delete an appointment by ID
+   * @param {string} appointmentId - Appointment ID
+   * @returns {Promise<void>} Confirmation of deletion
+   */
+  async deleteAppointment(appointmentId) {
+    return this.handleRequest(() =>
+      axios.delete(`${BASE_REST_API_URL}/appointments/${appointmentId}`, {
+        headers: this.getHeaders(),
+      })
+    );
   }
 
   /**
    * Fetch a specific appointment by ID
-   * @param {string} appointmentId - ID of the appointment to fetch
-   * @returns {Promise} Axios response
+   * @param {string} appointmentId - Appointment ID
+   * @returns {Promise<Object>} Appointment details
    */
   async getAppointmentById(appointmentId) {
-    try {
-      const response = await axios.get(
-        `${BASE_REST_API_URL}/appointments/${appointmentId}`,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error fetching appointment by ID:", err);
-      throw err;
-    }
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/appointments/${appointmentId}`, {
+        headers: this.getHeaders(),
+      })
+    );
   }
 
   /**
-   * Fetch all doctors
-   * @returns {Promise} Axios response
+   * Fetch all rooms
+   * @returns {Promise<Object[]>} List of rooms
    */
-  async getAllDoctors() {
-    try {
-      const response = await axios.get(`${BASE_REST_API_URL}/doctors`, {
+  async getAllRooms() {
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/rooms`, {
         headers: this.getHeaders(),
-      });
-      return response.data;
-    } catch (err) {
-      console.error("Error fetching all doctors:", err);
-      throw err;
-    }
+      })
+    );
   }
+
+  
 
   /**
    * Create a new doctor
    * @param {Object} doctor - Doctor data
    * @returns {Promise} Axios response
    */
-  async createDoctor(doctor) {
+  async updateRoom(roomId, roomData) {
+    return this.handleRequest(() =>
+      axios.put(`${BASE_REST_API_URL}/rooms/${roomId}`, roomData, {
+        headers: this.getHeaders(),
+      })
+    );
+  }
+
+  async updateDoctor(doctor) {
     try {
       const response = await axios.post(
         `${BASE_REST_API_URL}/doctors`,
@@ -141,90 +159,42 @@ class AppServices {
 
   /**
    * Fetch the count of patients
-   * @returns {Promise} Axios response
+   * @returns {Promise<number>} Count of patients
    */
   async getPatientsCount() {
-    try {
-      const response = await axios.get(
-        `${BASE_REST_API_URL}/dashboard/patients-count`,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error fetching patients count:", err);
-      throw err;
-    }
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/dashboard/patients-count`, {
+        headers: this.getHeaders(),
+      })
+    );
   }
 
   /**
    * Fetch the count of pending approvals
-   * @returns {Promise} Axios response
+   * @returns {Promise<number>} Count of pending approvals
    */
   async getPendingApprovalsCount() {
-    try {
-      const response = await axios.get(
-        `${BASE_REST_API_URL}/appointments/pending-count`,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error fetching pending approvals count:", err);
-      throw err;
-    }
-  }
-
-  /**
-   * Fetch all rooms
-   * @returns {Promise} Axios response
-   */
-  async getAllRooms() {
-    try {
-      const response = await axios.get(`${BASE_REST_API_URL}/rooms`, {
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/appointments/pending-count`, {
         headers: this.getHeaders(),
-      });
-      return response.data;
-    } catch (err) {
-      console.error("Error fetching rooms:", err);
-      throw err;
-    }
+      })
+    );
   }
 
   /**
-   * Reset all rooms
-   * @returns {Promise} Axios response
+   * Generic method to handle all requests
+   * @param {Function} apiCall - API call function
+   * @returns {Promise<any>} Response data or error
    */
-  async resetRooms() {
+  async handleRequest(apiCall) {
     try {
-      const response = await axios.post(`${BASE_REST_API_URL}/rooms/reset`, null, {
-        headers: this.getHeaders(),
-      });
+      const response = await apiCall();
       return response.data;
-    } catch (err) {
-      console.error("Error resetting rooms:", err);
-      throw err;
-    }
-  }
-
-  /**
-   * Update a room by ID
-   * @param {string} roomId - ID of the room to update
-   * @param {Object} roomData - Updated room data
-   * @returns {Promise} Axios response
-   */
-  async updateRoom(roomId, roomData) {
-    try {
-      const response = await axios.put(
-        `${BASE_REST_API_URL}/rooms/${roomId}`,
-        roomData,
-        { headers: this.getHeaders() }
-      );
-      return response.data;
-    } catch (err) {
-      console.error("Error updating room:", err);
-      throw err;
+    } catch (error) {
+      console.error("API Error:", error.response || error.message);
+      throw error.response?.data || error.message;
     }
   }
 }
 
-const appServicesInstance = new AppServices();
-export default appServicesInstance;
+export default new AppServices();

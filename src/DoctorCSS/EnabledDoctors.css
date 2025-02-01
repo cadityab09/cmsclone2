@@ -1,0 +1,63 @@
+.enabled-doctor-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.enabled-doctor-list-container {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    overflow-x: scroll;
+    padding: 20px 30px;
+    background-color: #f7f6f6;
+    -ms-overflow-style: none;
+
+}
+.enabled-doctor-list-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Edge */
+}
+
+.enabled-doctor-card-list h1 {
+    padding: 20px;
+}
+
+.enabled-doctor-list-item {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid grey;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2)
+}
+.enabled-doctor-list-item-card {
+    width: 280px;
+}
+
+.enabled-doctor-list-item-card img{
+    width: 100%;
+    height: 200px;
+    border-radius: 10px 10px 0px 0px;
+
+}
+.enabled-doctor-list-item-card .enabled-doctor-card-body{
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.enabled-doctor-list-item-card .enabled-doctor-card-body a {
+    color: blue;
+    text-decoration: underline;
+    /* position: absolute; */
+    /* margin-top: 100px; */
+    bottom: 0;
+    cursor: pointer;
+}
+.enabled-doctor-list-item-card .enabled-doctor-card-body a:hover {
+    text-decoration: underline;
+}

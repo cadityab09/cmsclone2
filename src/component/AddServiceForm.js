@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
+import "../DoctorCSS/AddServiceForm.css";
+
 const ServiceForm = ({ addOrUpdateService }) => {
   const [service, setService] = useState({
     id: Date.now(),
@@ -60,7 +62,11 @@ const ServiceForm = ({ addOrUpdateService }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <div className='add-service-container'>
+      <form onSubmit={handleSubmit} className='add-service-form'>
+        <div>
+          <h1>Add new Service</h1>
+        </div>
       <div className="form-group">
         <label>Service Title</label>
         <input
@@ -119,6 +125,7 @@ const ServiceForm = ({ addOrUpdateService }) => {
         Save Service
       </button>
     </form>
+    </div>
   );
 };
 

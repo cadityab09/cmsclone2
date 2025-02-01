@@ -1,7 +1,7 @@
-import React from "react";
-// import { RiMicroscopeLine } from "react-icons/ri";
-// import { MdHealthAndSafety } from "react-icons/md";
-// import { FaHeartbeat } from "react-icons/fa";
+import React, { useState } from "react";
+import { RiMicroscopeLine } from "react-icons/ri";
+import { MdHealthAndSafety } from "react-icons/md";
+import { FaHeartbeat } from "react-icons/fa";
 // import '../CSS/Services.css'; // Custom CSS
 // import ServiceForm from '../DoctorComponents/AddServiceForm'; // Import the ServiceForm component
 
@@ -39,12 +39,12 @@ const ViewServices = ({servicesData, setServicesData}) => {
 //     ],
 //   });
 
-  // const addOrUpdateService = (newServiceData) => {
-  //   setServicesData((prevData) => ({
-  //     ...prevData,
-  //     services: [...prevData.services, newServiceData], // Add new service to the list
-  //   }));
-  // };
+  const addOrUpdateService = (newServiceData) => {
+    setServicesData((prevData) => ({
+      ...prevData,
+      services: [...prevData.services, newServiceData], // Add new service to the list
+    }));
+  };
 
   return (
     <div className="services-section py-5">
@@ -61,7 +61,7 @@ const ViewServices = ({servicesData, setServicesData}) => {
           {servicesData.services.map((service) => (
             <div className="col-lg-4" key={service.id}>
               <div className="card text-center h-100 shadow-sm">
-                <div className="card-body">
+                <div className="card-body service-card-body">
                   {service.img ? (
                     <img
                       src={service.img}

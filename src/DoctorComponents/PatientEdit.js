@@ -29,7 +29,7 @@ function PatientEdit({ patient, onClose, onUpdate }) {
         </button>
         <h2>Edit Patient</h2>
         <form onSubmit={handleSubmit}>
-          <div className="modal-header">
+          <div className="modal-header patient-edit-form-content">
             <label>
               Name:
               <input

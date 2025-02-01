@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import '../DoctorCSS/DashboardOverview.css';
-import axios from 'axios';  // Import axios for HTTP requests
+import React, { useEffect, useState } from "react";
+import "../DoctorCSS/DashboardOverview.css";
+import axios from "axios";
+import AppServices from "../services/AppServices";
 
 function DashboardOverview() {
   const [appointmentsCount, setAppointmentsCount] = useState(0);
-  const [patientsCount, setPatientsCount] = useState(0); // New state for patients count
+  const [patientsCount, setPatientsCount] = useState(0); // State to store the count of registered patients
 
   useEffect(() => {
-    // Fetch live appointments data when the component mounts
+    // Fetch the total number of appointments
     const fetchAppointments = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/appointments");  // Update with correct endpoint
+        const response = await axios.get(
+          "http://localhost:8084/api/appointments"
+        , {headers: AppServices.getHeaders()}); // Update with your endpoint
         if (response && response.data) {
-          setAppointmentsCount(response.data.length);  // Update the count based on API response
+          setAppointmentsCount(response.data.length); // Assuming response.data is an array of appointments
         }
       } catch (err) {
         console.error("Error fetching appointments:", err);
@@ -21,34 +24,57 @@ function DashboardOverview() {
 
     fetchAppointments();
 
-    // Fetch the number of patients registered
+    // Fetch the total number of patients registered
     const fetchPatientsCount = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/dashboard/patients-count");  // Fetch patients count
-        if (response && response.data) {
-          setPatientsCount(response.data);  // Update patients count
+        const response = await axios.get(
+          "http://localhost:8084/api/patients",{headers: AppServices.getHeaders()}
+        ); // Update with your endpoint
+        if (response && Array.isArray(response.data)) {
+          setPatientsCount(response.data.length); // Assuming response.data is an array of patients
+        } else {
+          console.error(
+            "Unexpected response format for patients:",
+            response.data
+          );
         }
       } catch (err) {
         console.error("Error fetching patients count:", err);
       }
     };
 
-    fetchPatientsCount();  // Fetch patients count on component mount
+    fetchPatientsCount();
 
-    // New effect to fetch appointments count specifically
-    const fetchAppointmentsCount = async () => {
-      try {
-        const response = await axios.get("http://localhost:8080/api/dashboard/appointments-count");  // New endpoint for appointments count
-        if (response && response.data) {
-          setAppointmentsCount(response.data.count);  // Assuming response has the count property
-        }
-      } catch (err) {
-        console.error("Error fetching appointments count:", err);
+    // WebSocket connection for real-time updates
+    const socket = new WebSocket("ws://localhost:8084/live-updates");
+
+    socket.onopen = () => {
+      console.log("WebSocket connection established for live updates.");
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "patientsCount") {
+        setPatientsCount(data.count); // Update patients count live
+      }
+      if (data.type === "appointmentsCount") {
+        setAppointmentsCount(data.count); // Update appointments count live
       }
     };
 
-    fetchAppointmentsCount();  // Fetch total appointments count on component mount
-  }, []);  // Empty dependency array to run the effect only once after mount
+    socket.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    socket.onclose = () => {
+      console.log("WebSocket connection closed.");
+    };
+
+    // Cleanup WebSocket connection on component unmount
+    return () => {
+      socket.close();
+    };
+  }, []); // Empty dependency array to run the effect only once after mount
 
   return (
     <div className="dashboard-overview">
@@ -56,16 +82,16 @@ function DashboardOverview() {
       <p className="dashboard-welcome">Welcome to the Receptionist Dashboard!</p>
       <div className="dashboard-stats">
         <div className="stat-card">
-          <h2 className="stat-number">{patientsCount}</h2> {/* Display the dynamic patients count */}
+          <h2 className="stat-number">{patientsCount}</h2>
           <p className="stat-label">Patients Registered</p>
         </div>
         <div className="stat-card">
           <h2 className="stat-number">{appointmentsCount}</h2>
-          <p className="stat-label">Appointments</p>
+          <p className="stat-label">Pending Appointments</p>
         </div>
         <div className="stat-card">
-          <h2 className="stat-number">5</h2>
-          <p className="stat-label">Pending Approvals</p>
+          <h2 className="stat-number">0</h2>
+          <p className="stat-label">Approvals</p>
         </div>
       </div>
     </div>

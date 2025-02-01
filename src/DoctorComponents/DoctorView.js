@@ -12,7 +12,7 @@ import AppointmentsAdd from '../component/appointment/AppointmentsAdd';
 import AppointmentViewById from '../component/appointment/AppointmentViewById';
 import Appointment from '../component/appointment/Appointment';
 import AppointmentUpdate from '../component/appointment/AppointmentUpdate';
-// import UserStorageService from '../services/UserStorageService';
+import UserStorageService from '../services/UserStorageService';
 import ServiceForm from '../component/AddServiceForm';
 import { RiMicroscopeLine } from "react-icons/ri";
 import { MdHealthAndSafety } from "react-icons/md";
@@ -21,7 +21,11 @@ import "../DoctorCSS/DoctorView.css";
 import ViewServices from './ViewService';
 import AddDoctorForm from "./AddDoctorForm"
 import DoctorInfo from "./DoctorInfo";
-import AddRoom from '../RoomComponents/AddRoom';
+import ViewPatientDise from './ViewPatientdiseage'
+import AllPatientDise from '../DoctorComponents/AddPatientDiseage'
+import EnabledDoctors from './EnabledDoctors'
+import Roomhistory from '../RoomComponents/ViewBedHistory'
+import ViewLiveBed from '../RoomComponents/ViewLiveBed'
 import doc1 from '../assets/img/doc1.jpg';
 import doc2 from '../assets/img/doc2.jpg';
 import doc3 from '../assets/img/doc3.jpg';
@@ -30,13 +34,16 @@ import doc5 from '../assets/img/doc5.jpg';
 import doc6 from '../assets/img/doc6.jpg';
 
 function DoctorView() {
-    const [sideNavStatus, setSideNavStatus] = useState(true);
+    const [sideNavStatus, setSideNavStatus] = useState(false);
 
 
     const subpatient = [
         { number: '1', name: 'Add patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem:false, },
-        { number: '2', name: 'view patient', icon: 'fas fa-user', url: '/DoctorDashboard/AllPatient' },
-    ]
+        { number: '2', name: 'view-patient-info', icon: 'fas fa-user', url: '/DoctorDashboard/AllPatient' },
+        { number: '3', name: 'add-patient-desa', icon: 'fas fa-user', url: '/DoctorDashboard/AllPatientDise' },
+        { number: '4', name: 'view-patient-desa', icon: 'fas fa-user', url: '/DoctorDashboard/viewPatientDise' },
+
+      ]
     const subappointment = [
         { number: '4', name: 'Create Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/create-appointment' },
         { number: '5', name: 'View-Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/list-appointment' },
@@ -48,11 +55,14 @@ function DoctorView() {
     const subdoctor = [
         { number: '1', name: 'Add Doctor', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/add-doctor' },
         { number: '2', name: 'View Doctor', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-doctor' },
+        { number: '4', name: 'View Active Doctor', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-active-doctor' },
     ]
     const subroom = [
-      { number: '1', name: 'Add bed', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/add-room' },
-      { number: '2', name: 'View bed', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-room' },
-  ]
+        { number: '1', name: 'Add Room', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/add-room' },
+        { number: '2', name: 'View live Room', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-live-bed' },
+        { number: '3', name: 'View Room History', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-room-history' },
+       
+    ]
 
     const [menuItems, setMenuItems] = useState([
 
@@ -60,9 +70,9 @@ function DoctorView() {
         { number: '2', name: 'patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
         { number: '4', name: 'Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
         { number: '6', name: 'view Enquiries', icon: 'fas fa-question-circle', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
-        { number: '7', name: 'room', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subroom, isExpanded: false },
-        { number: '8', name: 'Service', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/service', isSubitem: true, subitem: subservice, isExpanded: false },
-        { number: '9', name: 'Doctors', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/doctors', isSubitem: true, subitem: subdoctor, isExpanded: false },
+        { number: '7', name: 'room', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem:true,subitem: subroom, isExpanded: false },
+        { number: '8', name: 'Service', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
+        { number: '9', name: 'Doctors', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
     
     ]);
     
@@ -139,18 +149,6 @@ function DoctorView() {
         },
         // Other initial doctors
       ]);
-
-      const [roomlist, setroomlist] = useState([
-        {
-          img: doc1,
-          name: "Dr. Serena Mitchell",
-          specialties: "Orthopedic Surgeon",
-          inTime: "9:00 AM",
-          outTime: "5:00 PM",
-          days: ["Monday", "Wednesday", "Friday"]
-        },
-      ])
-
     const [servicesData, setServicesData] = useState({
         title: "Our Services",
         description: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus, quidem.",
@@ -204,7 +202,9 @@ function DoctorView() {
 
     return (
         <>
+            <div className='dash-top-nav'>
             <Navbar changeSideNavStatus={changeSideNavStatus} />
+            </div>
             <div className="main-view">
                     <div className={`side-navbar`}>
                         <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} toggleSubmenu={toggleSubmenu} />
@@ -216,19 +216,25 @@ function DoctorView() {
                                 <Route path="/" element={<DashboardOverview />} />
                                 <Route path="/DashboardOverview" element={<DashboardOverview />} />
                                 <Route path="/AllPatient" element={<AllPatients />} />
+
+                                <Route path="/AllPatientDise" element={<AllPatientDise />} />
+                                <Route path="/ViewPatientDise" element={<ViewPatientDise />} />
+
                                 <Route path="/add-patient" element={<AddPatient />} />
                                 <Route path="/create-appointment" element={<AppointmentsAdd />} />
                                 <Route path="/list-appointment" element={<Appointment />} />
                                 <Route path="/view-appointment/:id" element={<AppointmentViewById />} />
                                 <Route path="/edit-appointment/:id" element={<AppointmentUpdate />} />
                                 <Route path="/AddEnquiry" element={<AddEnquiry />} />
-                                <Route path="/Room" element={<Room />} />
+                                <Route path="/add-room" element={<Room />} />
+                                <Route path="/view-live-bed" element={<ViewLiveBed/>}/>
+                                <Route path="/view-room-history" element={<Roomhistory/>}/>
+                                {/* <Route path="" */}
                                 <Route path="/add-doctor" element={<AddDoctorForm addOrUpdateDoctor={addOrUpdateDoctor} />} />
                                 <Route path="/view-doctor" element={<DoctorInfo doctors={doctors} setDoctors={setDoctors}/>} />
+                                <Route path="/view-active-doctor" element={<EnabledDoctors/>} />
                                 <Route path="/view-service" element={<ViewServices servicesData={servicesData} setServicesData={setServicesData} />} />
-                                <Route path="/add-room" element={<AddRoom roomlist={roomlist} setroomlist={setroomlist}/>} />
-                                <Route path="/view-room" element={<Room roomlist={roomlist} setroomlist={setroomlist} />} />
-                                <Route path="/create-service" element={<ServiceForm addOrUpdateService={addOrUpdateService} />
+                                <Route path="/create-service" element={  <ServiceForm addOrUpdateService={addOrUpdateService} />
                                 
 } />
                             </Routes>

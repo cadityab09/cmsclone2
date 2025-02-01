@@ -72,7 +72,7 @@
 .services-section .btn-link {
   color: #007bff;
   text-decoration: none;
-  margin-top: auto; /* Push link to the bottom if possible */
+  /* margin-top: auto; */
 }
 
 .services-section .btn-link:hover {
@@ -85,6 +85,14 @@
 .card .card-body {
   width: 100%;
   justify-content: center;
+}
+
+.service-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70%;
 }
 
 /* Media Queries */

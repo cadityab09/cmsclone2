@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import PatientEdit from "./PatientEdit"; // Import PatientEdit
 import "../DoctorCSS/AllPatients.css";
+import UserStorageService from "../services/UserStorageService";
 
 function AllPatients() {
   const [patients, setPatients] = useState([]);
@@ -38,12 +38,25 @@ function AllPatients() {
   }, [nameQuery, contactQuery, patients]);
 
   const handleDelete = async (patientId) => {
-    try {
-      await axios.delete(`http://localhost:8084/api/patients/${patientId}`);
-      setPatients(patients.filter((patient) => patient.id !== patientId));
-      setFilteredPatients(filteredPatients.filter((patient) => patient.id !== patientId));
-    } catch (error) {
-      alert("Failed to delete patient");
+    const confirmDelete = window.confirm("Are you sure you want to delete this patient?");
+    
+    if (confirmDelete) {
+      try {
+        // Make API request to delete patient from the database
+        await axios.delete(`http://localhost:8084/api/patients/${patientId}`, {
+          headers: {
+            Authorization: `Bearer ${UserStorageService.getToken()}`,
+            "Content-Type": "application/json"
+          }
+        });
+
+        // Update the state to remove the deleted patient from both lists (patients and filteredPatients)
+        const updatedPatients = patients.filter((patient) => patient.id !== patientId);
+        setPatients(updatedPatients);
+        setFilteredPatients(updatedPatients);  // Ensure both are updated
+      } catch (error) {
+        alert("Failed to delete patient");
+      }
     }
   };
 
@@ -130,7 +143,7 @@ function AllPatients() {
                     ) : (
                       <p>No wife</p>
                     )}
-                    {Array.isArray(patient.childrenNames) && patient.childrenNames.length > 0 ? (
+                    {/* {Array.isArray(patient.childrenNames) && patient.childrenNames.length > 0 ? (
                       <div>
                         <p>Children:</p>
                         <ul>
@@ -141,7 +154,7 @@ function AllPatients() {
                       </div>
                     ) : (
                       <p>No children</p>
-                    )}
+                    )} */}
                   </td>
                   <td>
                     <div className="d-flex gap-2">
@@ -151,12 +164,12 @@ function AllPatients() {
                       >
                         Edit
                       </button>
-                      <button
+                      {/* <button
                         className="btn btn-danger btn-sm"
                         onClick={() => handleDelete(patient.id)}
                       >
                         Delete
-                      </button>
+                      </button> */}
                     </div>
                   </td>
                 </tr>
@@ -173,13 +186,105 @@ function AllPatients() {
         </div>
       </div>
 
-      {/* Render the PatientEdit modal outside the table */}
+      {/* Render the Patient Edit popup form if editingPatient is set */}
       {editingPatient && (
-        <PatientEdit
-          patient={editingPatient}
-          onClose={closeModal}
-          onUpdate={handleUpdate}
-        />
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button onClick={closeModal} className="close-btn">X</button>
+            <h2>Edit Patient Details</h2>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleUpdate(editingPatient); // Submit the updated patient details
+              }}
+            >
+              <div className="form-group d-flex justify-content-between">
+                <div className="d-flex flex-column">
+                  <label>Name:</label>
+                  <input
+                    type="text"
+                    value={editingPatient.name}
+                    onChange={(e) => setEditingPatient({ ...editingPatient, name: e.target.value })}
+                    className="form-control"
+                    required
+                  />
+                </div>
+
+                <div className="d-flex flex-column">
+                  <label>Age:</label>
+                  <input
+                    type="number"
+                    value={editingPatient.age}
+                    onChange={(e) => setEditingPatient({ ...editingPatient, age: e.target.value })}
+                    className="form-control"
+                    required
+                  />
+                </div>
+
+                <div className="d-flex flex-column">
+                  <label>Contact:</label>
+                  <input
+                    type="text"
+                    value={editingPatient.contact}
+                    onChange={(e) => setEditingPatient({ ...editingPatient, contact: e.target.value })}
+                    className="form-control"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="form-group d-flex justify-content-between">
+                <div className="d-flex flex-column">
+                  <label>Gender:</label>
+                  <input
+                    type="text"
+                    value={editingPatient.gender}
+                    onChange={(e) => setEditingPatient({ ...editingPatient, gender: e.target.value })}
+                    className="form-control"
+                    required
+                  />
+                </div>
+
+                <div className="d-flex flex-column">
+                  <label>Email:</label>
+                  <input
+                    type="email"
+                    value={editingPatient.email}
+                    onChange={(e) => setEditingPatient({ ...editingPatient, email: e.target.value })}
+                    className="form-control"
+                    required
+                  />
+                </div>
+
+                <div className="d-flex flex-column">
+                  <label>Marital Status:</label>
+                  <select
+                    value={editingPatient.maritalStatus}
+                    onChange={(e) => setEditingPatient({ ...editingPatient, maritalStatus: e.target.value })}
+                    className="form-control"
+                    required
+                  >
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>Wife's Name (if married):</label>
+                <input
+                  type="text"
+                  value={editingPatient.wifeName || ""}
+                  onChange={(e) => setEditingPatient({ ...editingPatient, wifeName: e.target.value })}
+                  className="form-control"
+                  disabled={editingPatient.maritalStatus !== "married"}
+                />
+              </div>
+
+              <button type="submit" className="btn btn-primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
       )}
     </div>
   );

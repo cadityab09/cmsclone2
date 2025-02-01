@@ -16,26 +16,26 @@ const PatientExperience = () => {
     {
       id: 1,
       name: 'Shyam Singhal',
-      content: 'बीड सर्वोत्तम रुग्णालयांपैकी एक. येथील कर्मचारी, डेकेअर टीम, डायलिसिस आणि बिलिंग विभाग या सर्वांनी अपवादात्मक सेवा दिली. परिचारिका, डॉक्टर आणि प्रशासक अत्यंत सभ्य, प्रामाणिक आणि नेहमीच मदतगार आहेत.',
+      content: 'बीड सर्वोत्तम रुग्णालयांपैकी एक. येथील कर्मचारी, डेकेअर टीम, डायलिसिस आणि बिलिंग विभाग या सर्वांनी अपवादात्मक सेवा दिली. परिचारिका, डॉक्टर आणि प्रशासक अत्यंत सभ्य, प्रामाणिक आणि नेहमीच मदतगार आहेत..',
       rating: 5
     },
     {
       id: 2,
       name: 'Rajesh Kumar',
-      content: 'अत्याधुनिक उपकरणांसह उत्कृष्ट आरोग्य सुविधा. डॉक्टर अत्यंत कुशल आहेत आणि कर्मचारी खूप काळजी घेणारे आणि सहाय्यक आहेत.',
+      content: 'अत्याधुनिक उपकरणांसह उत्कृष्ट आरोग्य सुविधा. डॉक्टर अत्यंत कुशल आहेत आणि कर्मचारी खूप काळजी घेणारे आणि सहाय्यक आहेत..',
       rating: 5
     },
     {
       id: 3,
       name: 'Priya Sharma',
-      content: 'माऊली हॉस्पिटलमधील उत्कृष्ट अनुभव. वैद्यकीय पथक व्यावसायिक आहे आणि सुविधा जागतिक दर्जाच्या आहेत.',
+      content: 'माऊली हॉस्पिटलमधील उत्कृष्ट अनुभव. वैद्यकीय पथक व्यावसायिक आहे आणि सुविधा जागतिक दर्जाच्या आहेत..',
       rating: 5
     }
   ];
 
   const renderStars = (rating) => {
     return [...Array(rating)].map((_, index) => (
-      <span key={index} className="star" role="img" aria-label="star">⭐</span>
+      <span key={index} className="star">⭐</span>
     ));
   };
 
@@ -45,7 +45,7 @@ const PatientExperience = () => {
         <div className="video-section">
           <h2>Patient Experience Stories</h2>
           <p>Hear directly from those we've treated at Mauli Hospitals</p>
-
+          
           <div className="video-container">
             <video 
               src={videos[activeVideoIndex]} 
@@ -78,7 +78,7 @@ const PatientExperience = () => {
         <div className="testimonials-section">
           <h2>Patient Speaks</h2>
           <p>आमच्या रुग्णांकडून आशा आणि उपचारांच्या खऱ्या कथा</p>
-
+          
           <div className="testimonials-slider">
             {testimonials.map((testimonial, index) => (
               <div 
@@ -92,7 +92,7 @@ const PatientExperience = () => {
                 </div>
               </div>
             ))}
-
+            
             <div className="testimonial-navigation">
               <button className="nav-btn prev" onClick={() => setActiveTestimonialIndex((prev) => prev > 0 ? prev - 1 : testimonials.length - 1)}>❮</button>
               <div className="testimonial-dots">

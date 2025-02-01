@@ -1,45 +1,42 @@
-import React, { useState, useEffect } from "react";
+
+
+
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./room.css";
 
 const Room = ({ bed, openModal, handleDischarge }) => {
-  const isOccupied = bed.patient && bed.patient.trim() !== ""; // Updated check for status
-
-  // const [bed, setBe]
-
   return (
     <div className="room-card-col">
       <div
-        className={`card clinic-card ${
-          isOccupied ? "bg-danger text-white" : "bg-light"
-        }`}
+        className={`card clinic-card ${bed.status === "AVAILABLE" ? "bg-light" : "bg-green text-white"
+          }`}
       >
         <div className="card-body">
-          <h5 className="card-title clinic-title">Bed {bed.id}</h5>
-          <p className="card-text">Status: {isOccupied ? "Occupied" : "Available"}</p>
-          {isOccupied && (
+          <h5 className="card-title clinic-title">Bed {bed.bedId}</h5>
+          <p className="card-text">Status: {bed.status}</p>
+          {bed.status === "UNAVAILABLE" && (
             <>
-              <p className="card-text">Patient: {bed.patient}</p>
-              <p className="card-text">Address: {bed.address}</p>
-              <p className="card-text">Problem: {bed.problem}</p>
-              <p className="card-text">Mobile Number: {bed.mobileNumber}</p>
-              <p className="card-text">Occupied Time: {bed.occupiedTime}</p>
+              <p className="card-text">Patient: {bed.patientName}</p>
+              <p className="card-text">Problem: {bed.patientProblem}</p>
+              <p className="card-text">Mobile Number: {bed.mobileNumber}</p> 
+              <p className="card-text">Occupied Time: {bed.assignedAt}</p>
             </>
           )}
         </div>
         <div className="card-footer">
-          {!isOccupied ? (
+          {bed.status === "AVAILABLE" ? (
             <button
               className="btn btn-primary btn-sm"
-              onClick={() => openModal(bed.id)}
+              onClick={() => openModal(bed)}
             >
               Assign Patient
             </button>
           ) : (
             <button
               className="btn btn-success btn-sm"
-              onClick={() => handleDischarge(bed.id)}
+              onClick={() => handleDischarge(bed)}
             >
               Discharge Patient
             </button>
@@ -51,54 +48,102 @@ const Room = ({ bed, openModal, handleDischarge }) => {
 };
 
 const ClinicRoomManagement = () => {
-  const [beds, setBeds] = useState([]);
-  const [modalData, setModalData] = useState({
-    show: false,
-    id: null,
-    patientName: "",
-    patientAddress: "",
-    patientProblem: "",
-    mobileNumber: "",
-  });
 
-  // Fetch bed data from the database
+  const fetchBeds = async () => {
+    try {
+      const response = await await axios.get(`http://localhost:8084/api/beds/status`);
+      const data = await response.data;
+      console.log(data);  
+      return data; // Assume the API returns a structure like { beds: [...] }
+    } catch (error) {
+      console.error("Error fetching beds:", error);
+      return []; // Return empty array in case of error
+    }
+  }; 
+
+  // const [beds, setBeds] = useState(
+  //   Array.from({ length: 40 }, (_, index) => ({
+  //     bedId: index + 1,
+  //     status: "Available",
+  //     patient: "",
+  //     problem: "",
+  //     mobileNumber: "",
+  //     assignedAt: null,
+  //     dischargeTime: null,
+  //   }))
+  // );
+
+  const [beds, setBeds] = useState([]);
+
   useEffect(() => {
-    const fetchBeds = async () => {
-      try {
-        const response = await axios.get("http://localhost:8084/api/beds");
-        const updatedBeds = response.data.map((bed) => ({
-          ...bed,
-          status: bed.patient && bed.patient.trim() !== "" ? "Occupied" : "Available",
-        }));
-        setBeds(updatedBeds);
-      } catch (error) {
-        console.error("Error fetching bed data:", error);
-        alert("Failed to load bed data.");
-      }
+    // Fetch and set the data
+    const getBedsData = async () => {
+      const bedsData = await fetchBeds();
+      setBeds(bedsData);
     };
 
-    fetchBeds();
+    getBedsData();
   }, []);
 
-  const openModal = (id) => {
+  const [modalData, setModalData] = useState({
+    show: false,
+    bedId: null,
+    patientId: null,
+    patientName: "",
+    patientProblem: "",
+    mobileNumber: "",
+    assignedAt: "",
+    patientFound: false,
+    patientSelected: false,
+  });
+
+  const openModal = (bed) => {
     setModalData({
       show: true,
-      id,
+      bedId: bed.bedId,
+      patientId: null,
       patientName: "",
-      patientAddress: "",
       patientProblem: "",
       mobileNumber: "",
+      assignedAt: "", // Automatically assign the current time
     });
+  };
+
+
+  const searchPatient = async () => {
+    // Simulate API call to search patient by ID
+    const patient = await (await axios.get(`http://localhost:8084/api/patients/${modalData.patientId}`)).data;
+
+    console.log(patient);
+
+    if (patient) {
+      setModalData((prevData) => ({
+        ...prevData,
+        patientName: patient.name,
+        // patientProblem: patient.patientProblem,
+        patientFound: true,
+      }));
+    } else {
+      alert("Patient not found!");
+    }
+  };
+
+  const selectPatient = () => {
+    setModalData((prevData) => ({
+      ...prevData,
+      patientSelected: true,
+      patientFound: false, // Hide search section
+    }));
   };
 
   const closeModal = () => {
     setModalData({
       show: false,
-      id: null,
+      bedId: null,
       patientName: "",
-      patientAddress: "",
-      patientProblem: "",
+      patientProblem: "", 
       mobileNumber: "",
+      assignedAt: "",
     });
   };
 
@@ -109,59 +154,47 @@ const ClinicRoomManagement = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const { id, patientName, patientAddress, patientProblem, mobileNumber } =
-      modalData;
+    const { bedId,patientId,assignedDate,assignedAt,patientName, patientProblem } = modalData;
 
-    if (patientName && patientAddress && patientProblem && mobileNumber) {
+    console.log(modalData)
       try {
+        // API call to save patient data in the database
         const response = await axios.post("http://localhost:8084/api/beds/assign", {
-          id,
+          bedId,
+          patientId,
           patientName,
-          patientAddress,
-          patientProblem,
-          mobileNumber,
+          assignedAt, // Send the assignedAt automatically
+          patientProblem
         });
 
+        // Update the UI after successful API call
         setBeds((prevBeds) =>
           prevBeds.map((bed) =>
-            bed.id === id
-              ? {
-                  ...bed,
-                  status: "Occupied",
-                  patient: patientName,
-                  address: patientAddress,
-                  problem: patientProblem,
-                  mobileNumber,
-                  occupiedTime: response.data.occupiedTime,
-                }
+            bed.bedId === bedId
+              ? response.data
               : bed
           )
         );
         alert("Patient assigned successfully!");
+        closeModal();
       } catch (error) {
         console.error("Error assigning patient:", error);
         alert("Failed to assign patient. Please try again.");
       }
-      closeModal();
-    }
   };
 
-  const handleDischarge = async (id) => {
+  const handleDischarge = async (bed) => {
     try {
-      await axios.post("http://localhost:8084/api/beds/discharge", { id });
+      // API call to update the bed status to available in the database
+      console.log(bed);
+      // Update UI after successful discharge
+      const data = (await axios.post("http://localhost:8084/api/beds/discharge", bed )).data;
+      // setBeds(data);
       setBeds((prevBeds) =>
-        prevBeds.map((bed) =>
-          bed.id === id
-            ? {
-                ...bed,
-                status: "Available",
-                patient: "",
-                address: "",
-                problem: "",
-                mobileNumber: "",
-                dischargeTime: new Date().toLocaleString(),
-              }
-            : bed
+        prevBeds.map((bed1) =>
+          bed1.bedId === bed.bedId
+            ? data
+            : bed1
         )
       );
       alert("Patient discharged successfully!");
@@ -171,13 +204,14 @@ const ClinicRoomManagement = () => {
     }
   };
 
+
   return (
     <div className="py-5">
-      <div className="container px-3">
+      <div className="px-3">
         <div className="rooms-card-list g-3">
           {beds.map((bed) => (
             <Room
-              key={bed.id}
+              key={bed.bedId}
               bed={bed}
               openModal={openModal}
               handleDischarge={handleDischarge}
@@ -190,7 +224,7 @@ const ClinicRoomManagement = () => {
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
-                  <h5 className="modal-title">Assign Patient to Bed {modalData.id}</h5>
+                  <p className="modal-title">Assign Patient to Bed {modalData.bedId}</p>
                   <button
                     type="button"
                     className="btn-close"
@@ -200,63 +234,119 @@ const ClinicRoomManagement = () => {
                 </div>
                 <form onSubmit={handleFormSubmit}>
                   <div className="modal-body">
-                    <div className="mb-3">
-                      <label htmlFor="patientName" className="form-label">
-                        Patient Name
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="patientName"
-                        name="patientName"
-                        value={modalData.patientName}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="patientAddress" className="form-label">
-                        Address
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="patientAddress"
-                        name="patientAddress"
-                        value={modalData.patientAddress}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="patientProblem" className="form-label">
-                        Problem
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="patientProblem"
-                        name="patientProblem"
-                        value={modalData.patientProblem}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
-                    <div className="mb-3">
-                      <label htmlFor="mobileNumber" className="form-label">
-                        Mobile Number
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="mobileNumber"
-                        name="mobileNumber"
-                        value={modalData.mobileNumber}
-                        onChange={handleInputChange}
-                        required
-                      />
-                    </div>
+                    {/* Search section: Hidden after selection */}
+                    {!modalData.patientSelected && (
+                      <div className="mb-3">
+                        <label htmlFor="patientId" className="form-label">
+                          Search Patient by ID
+                        </label>
+                        <div className="input-group">
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="patientId"
+                            name="patientId"
+                            value={modalData.patientId || ""}
+                            onChange={handleInputChange}
+                            required
+                          />
+                          <button
+                            type="button"
+                            className="btn btn-outline-primary"
+                            onClick={searchPatient}
+                          >
+                            Search
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Show patient details if found */}
+                    {modalData.patientFound && (
+                      <div
+                        className={`mb-3 p-2 border ${modalData.patientSelected ? "bg-success text-white" : "bg-light"
+                          }`}
+                        style={{ cursor: modalData.patientSelected ? "default" : "pointer" }}
+                        onClick={!modalData.patientSelected ? selectPatient : undefined}
+                      >
+                        <strong>Patient Name:</strong> {modalData.patientName}
+                        {!modalData.patientSelected && (
+                          <button
+                            type="button"
+                            className="btn btn-sm btn-primary ms-3"
+                            onClick={selectPatient}
+                          >
+                            Select
+                          </button>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Show patient details before occupied time input */}
+                    {modalData.patientSelected && (
+                      <div className="mb-3">
+                        <div className="selected-patient-modal-card">
+                          <div className="selected-patient-modal-card-body">
+                            <h5 className="selected-patient-modal-card-title">Patient Details</h5>
+                            <table className="selected-patient-table">
+                              <tbody>
+                                <tr>
+                                  <td className="selected-patient-modal-card-text">
+                                    <strong>Patient ID:</strong>
+                                  </td>
+                                  <td className="selected-patient-modal-card-text">
+                                    {modalData.patientId}
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="selected-patient-modal-card-text">
+                                    <strong>Patient Name:</strong>
+                                  </td>
+                                  <td className="selected-patient-modal-card-text">
+                                    {modalData.patientName}
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+
+
+                    {/* Show occupied time input after patient selection */}
+                    {modalData.patientSelected && (
+                      <div className="mb-3">
+                        <label htmlFor="patientProblem" className="form-label">
+                          Disease/Problem
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="patientProblem"
+                          name="patientProblem"
+                          value={modalData.patientProblem || ""}
+                          onChange={handleInputChange}
+                          placeholder={modalData.patientProblem || "Enter or select disease"}
+                          required
+                        />
+                        <label htmlFor="assignedAt" className="form-label">
+                          Occupied Time
+                        </label>
+                        <input
+                          type="datetime-local"
+                          className="form-control"
+                          id="assignedAt"
+                          name="assignedAt"
+                          value={modalData.assignedAt || ""}
+                          onChange={handleInputChange}
+                          required
+                        />
+                      </div>
+                    )}
                   </div>
+
                   <div className="modal-footer">
                     <button
                       type="button"
@@ -265,15 +355,21 @@ const ClinicRoomManagement = () => {
                     >
                       Close
                     </button>
-                    <button type="submit" className="btn btn-primary">
-                      Save changes
-                    </button>
+                    {modalData.patientSelected && (
+                      <button type="submit" className="btn btn-primary">
+                        Assign Patient
+                      </button>
+                    )}
                   </div>
                 </form>
               </div>
             </div>
           </div>
         )}
+
+
+
+
       </div>
     </div>
   );

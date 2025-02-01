@@ -105,6 +105,16 @@
   /* margin-left: 250px; */
 }
 
+
+.header-main .logo {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.header-main .logo .hospital-name {
+  text-decoration: none;
+  color: black;
+}
+
 .header-top-right {
   display: flex;
   align-items: center;
@@ -147,13 +157,14 @@
 .main-nav {
   flex: 1;
   padding-left: 10px;
-  /* flex-direction: column; */
+  right: 0;
+  position: absolute;
   display: flex;
-  justify-content: space-between;
+  justify-content: last baseline;
 }
 
 
-.main-nav span {
+.main-nav a {
   text-decoration: none;
   color: #333;
   font-weight: 500;
@@ -234,13 +245,13 @@
   padding: 5px 0;
 }
 
-.dropdown-column span {
+.dropdown-column a {
   text-decoration: none;
   color: #333;
   font-size: 14px;
 }
 
-.dropdown-column span:hover {
+.dropdown-column a:hover {
   color: #dc3545;
   text-decoration: underline;
 }
@@ -266,7 +277,7 @@
 }
 
 .mobile-menu .mobile-nav li {
-  padding: 10px 0;
+  /* padding: 10px 0; */
   text-align: center;
   
 }
@@ -292,7 +303,7 @@
   padding: 10px;
 }
 
-.menu-dropdown ul li span {
+.menu-dropdown ul li a {
   text-decoration: none;
   color: #333;
 }
@@ -321,7 +332,7 @@
   }
 }
 /* Responsive behavior */
-@media screen and (max-width: 1248px) {
+/* @media screen and (max-width: 1248px) {
   .main-nav {
     display: none;
   }
@@ -334,7 +345,38 @@
   .header-buttons {
     display: none;
   }
+  .menu.btn.btn-primary {
+    visibility: hidden;
+    
+  }
+  .appointment.btn.btn-success {
+    visibility: hidden;
+    
+  }
+.LoginMenuDrop .menu-dropdown{    
+    position:absolute;
+    right: 160px;
+    top:250px;
+
 }
+  .mmi-container {
+    display: flex;
+    flex-direction: row-reverse;
+    position: relative;
+    right: 0;
+    visibility: visible;
+  }
+  .mmi-container .mobile-menu {
+    position: absolute;
+    right: 0px;
+    top: 10;
+    width: 230px;
+    transition: all 2.5s ease-in-out;
+  }
+  button.mobile-menu-appointment.btn.btn-success.p-1.m-2 {
+    width: 90%;
+  }
+} */
 
 @media screen and (max-width: 768px) {
   .header-top {
@@ -372,12 +414,24 @@
     text-align: center;
   }
 
-  .mobile-menu .mobile-nav li span {
+  .mobile-menu .mobile-nav li a {
     padding: 10px;
 
   }
 }
 @media screen and (max-width: 1024px) {
+  .main-nav {
+    display: none;
+  }
+
+  .mobile-menu-icon {
+    display: flex;
+    visibility: visible;
+  }
+
+  .header-buttons {
+    display: none;
+  }
   .menu.btn.btn-primary {
     visibility: hidden;
     
@@ -403,8 +457,57 @@
     position: absolute;
     right: 0px;
     top: 10;
-    width: 200px;
+    width: 230px;
+    background-color: #45cfb1;
     transition: all 2.5s ease-in-out;
+  }
+  button.mobile-menu-appointment.btn.btn-success.p-1.m-2 {
+    width: 90%;
   }
 }
 
+
+
+
+
+
+/* no  */
+.mobile-nav ul {
+  list-style: none; /* Remove default list bullets */
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav ul li {
+  width: 100%; /* Full width for each item */
+  background-color: #f8f9fa; /* Light card-like background */
+  margin-bottom: 10px; /* Space between items */
+  padding: 10px 15px; /* Add some padding inside */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for card effect */
+  display: flex; /* Allow flexbox alignment */
+  justify-content: space-between; /* Align text and content evenly */
+  align-items: center; /* Center vertically */
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.mobile-nav ul li:hover {
+  transform: translateY(-2px); /* Slight hover lift effect */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow on hover */
+}
+
+.mobile-nav ul li a {
+  text-decoration: none; /* Remove underline */
+  color: #333; /* Neutral text color */
+  font-weight: bold; /* Make text stand out */
+}
+
+.mobile-menu-appointment {
+  width: 100%;
+}
+
+
+.mobile-menu-appointment-btn-list {
+  padding: 0px;
+}

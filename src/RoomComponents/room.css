@@ -11,7 +11,7 @@
   flex: 1;  
 }
 .room-card-col .card {
-  /* margin: 0 auto; */
+  margin: 0 auto;
   display: flex;
   justify-self: flex-start;
 }
@@ -19,6 +19,13 @@
   flex-wrap: wrap;
   min-width: 152px;
   width: 100%;
+}
+.card.clinic-card.bg-green {
+  color: #000;
+  background-color: #9dfe9b;
+}
+.card.clinic-card p {
+  color: #000000;
 }
 
 
@@ -49,6 +56,54 @@
     top: -70px;
     right: -13px;
 }
+
+
+
+.selected-patient-modal-card {
+  background: linear-gradient(135deg, #a29bfe, #6c5ce7); /* Custom gradient for the selected patient */
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  color: #ffffff; /* Light text color */
+  transition: transform 0.3s ease-in-out;
+}
+
+.selected-patient-modal-card:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+}
+
+.selected-patient-modal-card-body {
+  padding: 20px;
+}
+
+.selected-patient-modal-card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.selected-patient-modal-card-text {
+  font-size: 1.1rem;
+  color: #f8f9fa;
+  margin-bottom: 10px;
+}
+
+.selected-patient-table {
+  width: 100%;
+  background-color: linear-gradient(135deg, #a29bfe, #6c5ce7);
+  border-radius: 8px;
+  margin-top: 15px;
+  border: 0px;
+}
+.selected-patient-table tr{
+  
+}
+.selected-patient-table tr th,td {
+  border: 0px;
+  text-align: left;
+}
+
 
 /* Small devices (phones, 600px and below) */
 @media (max-width: 600px) {

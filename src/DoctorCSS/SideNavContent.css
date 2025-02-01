@@ -28,7 +28,9 @@
     width: 100%;
     padding: 0;
     margin: 0;
-    overflow-y: auto;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    padding-bottom: 50px;
     -ms-overflow-style: none;
 }
 .nav-list::-webkit-scrollbar {
@@ -43,6 +45,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    align-items: flex-start; 
     align-items: center;
     padding: 0px;
     /* padding: 20px; */
@@ -58,7 +61,7 @@
     padding: 10px;
 }
 .nav-list-item a:hover {
-    background-color: #664c72;
+    background-color: #cbc2cf;
 
 }
 
@@ -88,31 +91,31 @@
     /* border-left: 4px solid #000000;
     border-right: 4px solid #000000; */
     /* background-color: #381a46; */
-    background-color: #1d0329;
-
+    background-color: hsl(280, 27%, 96%);
     width: 100%;
-    /* border-radius: 10px; */
-    transition: max-height 0.4s ease-in-out,
+    transition: max-height 0.4s ease-in-out;
+    
 }
+
 .subitem-container:hover {
-    background-color: #664c72;
+    background-color: #eb3f05;
 }
 
 .sidebar-link-subitem {
     display: inline-block;
     width: 100%;
-    background-color: #000000;
+    background-color: #f6f1f8;
 
 }
 
 
 .nav-list-subitem .sidebar-link-subitem {
     padding: 10px;
-    color: #fff;
+    color: #060303;
     text-decoration: none;
 }
 .subitem-container .nav-list-subitem .sidebar-link-subitem:hover {
-    background-color: #1d1c1c !important;
+    background-color: #ded7e1 !important;
 }
 
 /* Tooltip functionality with title attribute handled by browser */

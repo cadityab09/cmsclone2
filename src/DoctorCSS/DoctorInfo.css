@@ -1,4 +1,16 @@
 /* Container that holds the cards */
+
+.doctor-list-container {
+  display: flex;
+  background: #f9f9f9;
+  
+}
+
+.doctor-list-item-card {
+  padding: 20px;
+  /* width: 300px; */
+}
+
 .imagescard {
   display: flex;
   flex-wrap: wrap;
@@ -7,9 +19,10 @@
 }
 
 /* Card Style */
-.card {
+.doctor-list-item-card {
+  
   width: 100%; 
-  max-width: 70%; /* Limit the card width */
+  max-width: 70%; 
   min-height: 70%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -21,6 +34,10 @@
 /* On hover: scale the card slightly for a better interaction */
 .card:hover {
   transform: scale(1.05);
+}
+
+.enabled-doctor-header {
+  background-color: #f9f9f9;
 }
 
 /* Image Styling */
@@ -77,6 +94,21 @@
 .table {
   margin-top: 3rem;
 }
+
+.doctor-info-table-div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow-x: scroll;
+}
+/* .doctor-info-table thead, tbody tr{
+  display: flex;
+  width: 100%;
+}
+.doctor-info-table thead, tbody tr td{
+  display: block;
+  width: 100%;
+} */
 
 /* Responsive Styles */
 @media (max-width: 1200px) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../CSS/HealthPackage.css";
-// import himage from "../assets/Images/img1.png";
+import himage from "../assets/Images/img1.png";
 import AddPackageForm from "./AddHealthpackage"; // Import the Add Package form
 
 const HealthcarePackages = () => {
@@ -18,8 +18,6 @@ const HealthcarePackages = () => {
                 femalesBelow40: ["Haemogram", "Chest X-Ray", "Physician Consultation", "PAP Smear", "USG – Abdomen & Pelvis"],
                 males: ["Haemogram", "Chest X-Ray", "USG – Abdomen & Pelvis", "Physician Consultation"],
             },
-        },
-        {
             locationId: 1,
             title: "Liver function test Package",
             price: "₹2420",

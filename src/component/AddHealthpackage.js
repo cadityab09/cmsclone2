@@ -1,50 +1,50 @@
-// import  { useState } from "react";
+import React, { useState } from "react";
 
 const AddPackageForm = ({ onAddPackage, locations }) => {
-    // const [newPackage, setNewPackage] = useState({
-    //     title: "",
-    //     price: "",
-    //     locationId: "",
-    //     features: { general: [], femalesAbove40: [], femalesBelow40: [], males: [] },
-    // });
+    const [newPackage, setNewPackage] = useState({
+        title: "",
+        price: "",
+        locationId: "",
+        features: { general: [], femalesAbove40: [], femalesBelow40: [], males: [] },
+    });
 
-    // const handleChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setNewPackage((prev) => ({
-    //         ...prev,
-    //         [name]: value,
-    //     }));
-    // };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setNewPackage((prev) => ({
+            ...prev,
+            [name]: value,
+        }));
+    };
 
-    // const handleFeatureChange = (e, group) => {
-    //     const { value } = e.target;
-    //     if (value && !newPackage.features[group].includes(value)) {
-    //         setNewPackage((prev) => ({
-    //             ...prev,
-    //             features: {
-    //                 ...prev.features,
-    //                 [group]: [...prev.features[group], value],
-    //             },
-    //         }));
-    //     }
-    // };
+    const handleFeatureChange = (e, group) => {
+        const { value } = e.target;
+        if (value && !newPackage.features[group].includes(value)) {
+            setNewPackage((prev) => ({
+                ...prev,
+                features: {
+                    ...prev.features,
+                    [group]: [...prev.features[group], value],
+                },
+            }));
+        }
+    };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     if (newPackage.title && newPackage.price && newPackage.locationId) {
-    //         // Call the parent function to add the new package
-    //         onAddPackage(newPackage);
-    //         // Reset the form fields after submission
-    //         setNewPackage({
-    //             title: "",
-    //             price: "",
-    //             locationId: "",
-    //             features: { general: [], femalesAbove40: [], femalesBelow40: [], males: [] },
-    //         });
-    //     } else {
-    //         alert("Please fill in all fields.");
-    //     }
-    // };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (newPackage.title && newPackage.price && newPackage.locationId) {
+            // Call the parent function to add the new package
+            onAddPackage(newPackage);
+            // Reset the form fields after submission
+            setNewPackage({
+                title: "",
+                price: "",
+                locationId: "",
+                features: { general: [], femalesAbove40: [], femalesBelow40: [], males: [] },
+            });
+        } else {
+            alert("Please fill in all fields.");
+        }
+    };
 
     // return (
     //     <form onSubmit={handleSubmit} className="add-package-form">

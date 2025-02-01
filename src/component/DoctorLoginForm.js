@@ -8,13 +8,13 @@ import UserStorageService from '../services/UserStorageService';
 const DoctorLoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [message] = useState('');
+    const [message, setMessage] = useState('');
     const navigate = useNavigate(); // Initialize useNavigate
 
     const handleLogin = (e) => {
         e.preventDefault();
-        // const hardCodedUsername = "doctor@gmail.com";
-        // const hardCodedPassword = "pass123";
+        const hardCodedUsername = "doctor@gmail.com";
+        const hardCodedPassword = "pass123";
 
         // if (username === hardCodedUsername && password === hardCodedPassword) {
         //     setMessage("Login successful!");
@@ -38,7 +38,7 @@ const DoctorLoginForm = () => {
                 UserStorageService.saveUser(user);
                 UserStorageService.saveToken(res.data.jwt);
                 
-                if(user.role==="ADMIN"){
+                if(user.role=="ADMIN"){
                     navigate('/DoctorDashboard');
                 }
                 else if(UserStorageService.isCustomerLoggedIn()){

@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import { BrowserRouter as Router, Route, Routes,Navigate } from 'react-router-dom';
 import Header from './component/Header';
-// import Hero from './component/Hero';
+import Hero from './component/Hero';
 import HealthPackage from './component/HealthPackage';
 // import Location from './component/Location'
 import Footer from './component/Footer'
@@ -15,6 +15,7 @@ import DoctorLoginForm from './component/DoctorLoginForm'
 import Login from './component/DoctorLoginForm';
 import Doctordashboard from './DoctorComponents/DoctorView';
 import NurseLoginForm from '../src/component/NurseLoginForm'
+import Map from './component/enquiries&Map'
 // import NurseDashboard from '../src/component/Nursedashboard'
 // import DoctorsInfo from './component/DoctorsInfo'
 // import DashboardOverview from '../src/DoctorComponents/DashboardOverview';
@@ -23,7 +24,7 @@ import NurseLoginForm from '../src/component/NurseLoginForm'
 // import AddEnquiries from '../src/DoctorComponents/AddEnquiries';
 // import AllPatient from '../src/DoctorComponents/AllPatients';
 
-// import Appointment from './component/appointment/Appointment';
+import Appointment from './component/appointment/Appointment';
 import AppointmentsAdd from './component/appointment/AppointmentsAdd';
 import AppointmentUpdate from './component/appointment/AppointmentUpdate';
 import AppointmentViewById from './component/appointment/AppointmentViewById';
@@ -32,7 +33,11 @@ import About from './component/abouts';
 import Home from './component/home';
 import Services from './component/Services'
 import DoctorInfo from './component/DoctorsInfo'
-// import Scroll from './component/ScrollingTitle'
+import EnabledDoctors from "./component/DoctorsInfo";
+
+import Scroll from './component/ScrollingTitle'
+import HospitalSpecialities from './component/HospitalSpecialities';
+import DummyDoctorsData from './component/DummyDoctorsData';
 
 
 function App() {
@@ -73,15 +78,18 @@ function App() {
             <Home/>
               </div>
               <About/>
-              <div ref={PackageRef}>
+              {/* <div ref={PackageRef}>
               <HealthPackage  />
-              </div>
-              <Services/>
-              <DoctorInfo/>
+              </div> */}
+              {/* <Services/> */}
+              <HospitalSpecialities />
+              {/* <DoctorInfo/> */}
+              <DummyDoctorsData />
               <PatientExperience />
               <div ref={whyChooseRef}>
                 <WhyChoose />
               </div> 
+              {/* <Map/> */}
               <Footer/>
 
               
@@ -100,7 +108,8 @@ function App() {
           <Route path="/create-appointment" element={<AppointmentsAdd/>} />    */}  
           <Route path="/add-appointment" element={<AppointmentsAdd/>} />     
           <Route path="/edit-appointment/:id" element={<AppointmentUpdate/>} />     
-          <Route path="/view-appointment/:id" element={<AppointmentViewById/>} />     
+          <Route path="/view-appointment/:id" element={<AppointmentViewById/>} />
+          <Route path="/" element={<EnabledDoctors />} />     
         </Routes>
       </Router>
       <Router>

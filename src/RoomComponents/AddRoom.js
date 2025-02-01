@@ -3,14 +3,9 @@ import axios from "axios";
 
 const AddRoom = () => {
   const [roomData, setRoomData] = useState({
-    status: "Available",
     patient: "",
-    address: "",
     problem: "",
     mobileNumber: "",
-    admissionTime: null,
-    occupiedTime: null,
-    dischargeTime: null,
   });
 
   const handleInputChange = (e) => {
@@ -20,19 +15,20 @@ const AddRoom = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+
+    // Add the current timestamp as occupiedTime
+    const dataToSend = {
+      ...roomData,
+      occupiedTime: new Date().toISOString(), // Automatically add the current timestamp
+    };
+
     try {
-      const response = await axios.post("http://localhost:8084/api/beds/add", roomData);
-      console.log(response);
+      const response = await axios.post("http://localhost:8084/api/room/add", dataToSend);
       alert("Room added successfully!");
       setRoomData({
-        status: "Available",
         patient: "",
-        address: "",
         problem: "",
         mobileNumber: "",
-        admissionTime: null,
-        occupiedTime: null,
-        dischargeTime: null,
       });
     } catch (error) {
       console.error("Error adding room:", error);
@@ -53,19 +49,10 @@ const AddRoom = () => {
             name="patient"
             value={roomData.patient}
             onChange={handleInputChange}
+            required
           />
         </div>
-        <div className="mb-3">
-          <label htmlFor="address" className="form-label">Address</label>
-          <input
-            type="text"
-            className="form-control"
-            id="address"
-            name="address"
-            value={roomData.address}
-            onChange={handleInputChange}
-          />
-        </div>
+        
         <div className="mb-3">
           <label htmlFor="problem" className="form-label">Problem</label>
           <input
@@ -75,6 +62,7 @@ const AddRoom = () => {
             name="problem"
             value={roomData.problem}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div className="mb-3">
@@ -86,6 +74,7 @@ const AddRoom = () => {
             name="mobileNumber"
             value={roomData.mobileNumber}
             onChange={handleInputChange}
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary">Add Room</button>

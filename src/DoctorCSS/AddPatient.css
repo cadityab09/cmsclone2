@@ -95,9 +95,26 @@ h1 {
 }
 
 
+/* my-css */
+.view-patient-disease-form {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.view-disease-table-container {
+  padding: 20px;
+  overflow-x: scroll;
+}
+
+.view-disease-table {
+
+}
+
 @media (max-width: 870px) {
   .add-patient-form {
-    max-width: 80%;
+    max-width: 90%;
     margin: 0 auto;
   }
   .add-patient-form-labels,

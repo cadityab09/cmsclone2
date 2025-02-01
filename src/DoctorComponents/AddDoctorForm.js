@@ -2,6 +2,9 @@ import React, { useState, useRef } from 'react';
 import Cropper from 'react-cropper';
 import 'cropperjs/dist/cropper.css';
 
+import "../DoctorCSS/AddDoctorForm.css"
+import AppServices from '../services/AppServices';
+
 const DoctorForm = ({ refreshDoctors }) => {
   const [doctor, setDoctor] = useState({
     img: '',
@@ -10,7 +13,9 @@ const DoctorForm = ({ refreshDoctors }) => {
     inTime: '',
     outTime: '',
     days: '',
+    status: 'ENABLED'
   });
+
 
   const cropperRef = useRef(null);
 
@@ -51,7 +56,7 @@ const DoctorForm = ({ refreshDoctors }) => {
     try {
       const response = await fetch('http://localhost:8084/api/doctors', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: AppServices.getHeaders(),
         body: JSON.stringify(formattedDoctor),
       });
 
@@ -60,7 +65,7 @@ const DoctorForm = ({ refreshDoctors }) => {
         setDoctor({ img: '', name: '', specialties: '', inTime: '', outTime: '', days: '' });
 
         // Call the refreshDoctors function to refresh the doctor list
-        refreshDoctors();
+        // refreshDoctors();
       } else {
         alert('Failed to save doctor');
       }
@@ -76,84 +81,111 @@ const DoctorForm = ({ refreshDoctors }) => {
   };
 
   return (
-    <div className='d-flex justify-content-center align-items-center h-100'>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Image Upload</label>
-          <input
-            type="file"
-            className="form-control"
-            name="img"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
+    <div className='add-doctor-container'>
+      <form onSubmit={handleSubmit} className='add-doctor-form'>
+        <div className="form-group add-doctor-form-content image-upload">
+          <label className='add-doctor-form-label'>
+            <span>Image Upload</span>
+            <input
+              type="file"
+              className="form-control add-doctor-form-input"
+              name="img"
+              onChange={handleFileChange}
+              accept="image/*"
+            />
+          </label>
           {doctor.img && (
-            <>
+            <div className='cropper-container'>
               <Cropper
                 src={doctor.img}
                 ref={cropperRef}
-                style={{ width: '100%', height: 400 }}
                 aspectRatio={1}
                 guides={false}
+                className='add-doctor-cropper'
               />
               <button type="button" onClick={handleCrop} className="btn btn-primary mt-3">Crop Image</button>
-            </>
+            </div>
           )}
         </div>
-        <div className="form-group">
-          <label>Name</label>
-          <input
-            type="text"
-            className="form-control"
-            name="name"
-            value={doctor.name}
-            onChange={handleChange}
-            required
-          />
+        <div className="form-group add-doctor-form-content">
+          <label>
+            <span>Name</span>
+            <input
+              type="text"
+              className="form-control"
+              name="name"
+              value={doctor.name}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            <span>Specialties</span>
+            <input
+              type="text"
+              className="form-control"
+              name="specialties"
+              value={doctor.specialties}
+              onChange={handleChange}
+              required
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label>Specialties</label>
-          <input
-            type="text"
-            className="form-control"
-            name="specialties"
-            value={doctor.specialties}
-            onChange={handleChange}
-            required
-          />
+
+        </div>
+        <div className="form-group add-doctor-form-content">
+          <label>
+            <span>In Time</span>
+            <input
+              type="time"
+              className="form-control"
+              name="inTime"
+              value={doctor.inTime}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            <span>Out Time</span>
+            <input
+              type="time"
+              className="form-control"
+              name="outTime"
+              value={doctor.outTime}
+              onChange={handleChange}
+              required
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label>In Time</label>
-          <input
-            type="time"
-            className="form-control"
-            name="inTime"
-            value={doctor.inTime}
-            onChange={handleChange}
-            required
-          />
+
         </div>
-        <div className="form-group">
-          <label>Out Time</label>
-          <input
-            type="time"
-            className="form-control"
-            name="outTime"
-            value={doctor.outTime}
+        <div className="form-group add-doctor-form-content">
+          <label>
+            <span>Available Days</span>
+            <input
+              type="text"
+              className="form-control"
+              name="days"
+              value={doctor.days}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+          Status:
+          <select 
+            name='status'
+            value={doctor.status}
+            className=""
             onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Available Days (comma-separated)</label>
-          <input
-            type="text"
-            className="form-control"
-            name="days"
-            value={doctor.days}
-            onChange={handleChange}
-            required
-          />
+            required>
+            <option value="">Select Status</option>
+            <option value="ENABLED">Active</option>
+            <option value="DISABLED">Inactive</option>
+          </select>
+        </label>
         </div>
         <button type="submit" className="btn btn-primary mt-3" disabled={!isFormValid()}>Save</button>
       </form>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure Bootstrap is imported
 import "../DoctorCSS/AddPatient.css";
 import axios from 'axios'; // Import axios
-// import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import AppServices from '../services/AppServices';
 
 function AddPatient() {
   const [isMarried, setIsMarried] = useState(false);
@@ -16,6 +17,8 @@ function AddPatient() {
   const [motherName, setMotherName] = useState('');
   const [maritalStatus, setMaritalStatus] = useState('');
   const [wifeName, setWifeName] = useState('');
+
+  const navigate = useNavigate();
 
   // New state for managing alert messages
   const [alertMessage, setAlertMessage] = useState('');
@@ -53,12 +56,10 @@ function AddPatient() {
 
     // Send data to the backend
     try {
-      const response = await axios.post('http://localhost:8084/api/patients', patientData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axios.post('http://localhost:8084/api/patients', patientData, {headers: AppServices.getHeaders()});
+
       console.log('Patient added:', response.data);
+      navigate('/DoctorDashboard/AllPatient');
       // You can add redirection or show a success message after successful addition
     } catch (error) {
       console.error('Error adding patient:', error);
@@ -185,19 +186,17 @@ function AddPatient() {
         <div className="row mb-3">
           <div className="col-md-6">
             <label>Gender:</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter gender"
-              required
-              value={gender}
-              onChange={(e) => setGender(e.target.value)}
-              onBlur={() => {
-                if (!validateGender(gender)) {
-                  showAlert("Enter a valid gender (only alphabets).");
-                }
-              }}
-            />
+            <select
+      className="form-control"
+      value={gender}
+      onChange={(e) => setGender(e.target.value)}
+      required
+    >
+      <option value="">Select gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+    </select>
           </div>
           <div className="col-md-6">
             <label>Father's Name:</label>
@@ -279,9 +278,9 @@ function AddPatient() {
         >
           Submit
         </button>
+        
       </form>
     </div>
   );
 }
-
 export default AddPatient;

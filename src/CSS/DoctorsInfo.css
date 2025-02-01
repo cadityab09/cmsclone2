@@ -1,106 +1,114 @@
-/* Card styles */
-.card {
-  border: 1px solid #ddd;
+/* Container that holds the cards */
+.imagescard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Card Style */
+.doctor-list-item-card {
+  
+  width: 100%; 
+  max-width: 70%; 
+  min-height: 70%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fff;
-  margin-bottom: 1.5rem; /* Add margin at the bottom for spacing */
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
 }
 
+/* On hover: scale the card slightly for a better interaction */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
 }
 
+/* Image Styling */
 .card-img-top {
-  height: 200px;
-  object-fit: cover;
-  border-bottom: 1px solid #ddd;
+  width: 100%;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Ensures the image doesn't get distorted */
 }
 
+/* Card Body */
+.card-body {
+  padding: 1.25rem;
+}
+
+/* Title Styling */
 .card-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  color: #333;
-}
-
-.card-text {
-  font-size: 0.95rem;
-  color: #6c757d;
-  margin-bottom: 1rem;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
-
-/* Row spacing for cards */
-.row.g-4 {
-  gap: 1.5rem;
-}
-
-/* Modal styles */
-.modal-dialog {
-  max-width: 500px;
-  margin: 1.75rem auto;
-}
-
-.modal-content {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.3);
-  border: none;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #dee2e6;
-  padding: 15px;
-}
-
-.modal-title {
   font-size: 1.25rem;
-  font-weight: bold;
-  color: #333;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
 
-.close {
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+/* Text Styling */
+.card-text {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 10px;
 }
 
-.modal-body {
-  padding: 20px;
+/* Doctors Availability and Working Hours */
+.card-body p {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
 }
 
-/* Container padding */
-.container {
-  padding: 20px;
+/* Button Styling */
+.btn-sm {
+  font-size: 0.875rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  width: 100%; /* Full width for the button */
 }
 
-/* Responsive Adjustments */
+/* Colors for enable/disable buttons */
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.table {
+  margin-top: 3rem;
+}
+
+.doctor-info-table-div {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow-x: scroll;
+}
+/* .doctor-info-table thead, tbody tr{
+  display: flex;
+  width: 100%;
+}
+.doctor-info-table thead, tbody tr td{
+  display: block;
+  width: 100%;
+} */
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+  .col-lg-4 {
+    flex: 1 1 30%; /* Three cards per row on large screens */
+  }
+}
+
+@media (max-width: 992px) {
+  .col-md-6 {
+    flex: 1 1 45%; /* Two cards per row on medium screens */
+  }
+}
+
 @media (max-width: 768px) {
-  .card-title {
-    font-size: 1.1rem;
-  }
-
-  .card-text {
-    font-size: 0.9rem;
-  }
-
-  .modal-dialog {
-    max-width: 90%;
+  .col-md-6 {
+    flex: 1 1 100%; /* One card per row on small screens */
   }
 }
