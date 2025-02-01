@@ -176,4 +176,8 @@
   .footer-section li {
     margin-bottom: 6px;
   }
+  .footer-section h3::after {
+    width: 80px;
+    margin-left: 0px;
+  }
 }

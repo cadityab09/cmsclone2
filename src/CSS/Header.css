@@ -1,3 +1,9 @@
+.logo a {
+  display: flex ;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -260,7 +266,7 @@
 .mobile-menu {
   background-color: #f8f8f8;
   position:absolute;
-  top: 100%;
+  top: 140%;
   right: 0%;
   width: 100%;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -413,11 +419,6 @@
   .mobile-menu .mobile-nav li {
     text-align: center;
   }
-
-  .mobile-menu .mobile-nav li a {
-    padding: 10px;
-
-  }
 }
 @media screen and (max-width: 1024px) {
   .main-nav {
@@ -459,10 +460,17 @@
     top: 10;
     width: 230px;
     background-color: #45cfb1;
+    border-radius: 5px;
     transition: all 2.5s ease-in-out;
   }
   button.mobile-menu-appointment.btn.btn-success.p-1.m-2 {
     width: 90%;
+  }
+  .modal-content {
+    border-radius: 0.5rem;
+    padding: 1rem;
+    height: 70%;
+    overflow-y: scroll;
   }
 }
 
@@ -510,4 +518,8 @@
 
 .mobile-menu-appointment-btn-list {
   padding: 0px;
+}
+
+.mobile-menu-appointment.btn.btn-success.p-1 {
+  margin: 0;
 }

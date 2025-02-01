@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -41,13 +41,17 @@ import DummyDoctorsData from './component/DummyDoctorsData';
 
 
 function App() {
-  const LocationRef = useRef(null);
+
+  const [isMainMenuOpen, setisMainMenuOpen] = useState(false);
+  const doctorRef = useRef(null);
   const PackageRef = useRef(null);
   const whyChooseRef = useRef(null);
+  const aboutUsRef = useRef(null);
+  const footerRef = useRef(null);
 
   const scollTODoctor=()=>{
-    if (LocationRef.current){
-      LocationRef.current.scrollIntoView({behavior:'smooth'});
+    if (doctorRef.current){
+      doctorRef.current.scrollIntoView({behavior:'smooth'});
     }  
   }
   const scollTOPackage=()=>{
@@ -55,15 +59,31 @@ function App() {
       PackageRef.current.scrollIntoView({behavior:'smooth'});
     }  
   }
+  const scrollToAboutUs=()=>{
+    if (aboutUsRef.current){
+      aboutUsRef.current.scrollIntoView({behavior:'smooth'});
+    }  
+  }
   const scrollToWhyChoose=()=>{
     if (whyChooseRef.current){
       whyChooseRef.current.scrollIntoView({behavior:'smooth'});
     }  
   }
+  const scrollToFooter=()=>{
+    if (footerRef.current){
+      footerRef.current.scrollIntoView({behavior:'smooth'});
+    }  
+  }
+
+  const MobileMenuCloseFunc = () => {
+    if(isMainMenuOpen == true){
+      setisMainMenuOpen(false);
+    }
+  };
 
   return (
     
-    <div className="App">
+    <div className="App" onClick={MobileMenuCloseFunc}>
       <>
       
       <Router>
@@ -71,27 +91,33 @@ function App() {
         <Routes>
           <Route path="/" element={
             <>
-             <Header scollTODoctor={scollTODoctor} scrollToWhyChoose={scrollToWhyChoose} scollTOPackage={scollTOPackage}/>
+             <Header isMainMenuOpen={isMainMenuOpen} setisMainMenuOpen={setisMainMenuOpen} scollTODoctor={scollTODoctor} scrollToWhyChoose={scrollToWhyChoose} scollTOPackage={scollTOPackage}
+              scrollToAboutUs={scrollToAboutUs} scrollToFooter={scrollToFooter} MobileMenuLinkFunc={MobileMenuCloseFunc}/>
             {/* <Scroll/> */}
             <div>
               {/* <Hero /> */}
             <Home/>
               </div>
+              <div ref={aboutUsRef}>
               <About/>
+              </div>
               {/* <div ref={PackageRef}>
               <HealthPackage  />
               </div> */}
               {/* <Services/> */}
               <HospitalSpecialities />
               {/* <DoctorInfo/> */}
+              <div ref={doctorRef}>
               <DummyDoctorsData />
+              </div>
               <PatientExperience />
               <div ref={whyChooseRef}>
                 <WhyChoose />
               </div> 
               {/* <Map/> */}
+              <div ref={footerRef}>
               <Footer/>
-
+              </div>
               
             </>
           

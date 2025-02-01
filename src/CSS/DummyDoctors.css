@@ -1,0 +1,138 @@
+/* Container that holds the cards */
+
+.doctor-list-container {
+    display: flex;
+    background: #f9f9f9;
+    
+  }
+  
+  .doctor-list-item-card {
+    padding: 20px;
+    /* width: 300px; */
+  }
+  
+  .imagescard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Card Style */
+  .doctor-list-item-card {
+    
+    width: 100%; 
+    max-width: 70%; 
+    min-height: 70%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* On hover: scale the card slightly for a better interaction */
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .enabled-doctor-header {
+    background-color: #f9f9f9;
+  }
+  
+  /* Image Styling */
+  .card-img-top {
+    width: 100%;
+    height: 200px; /* Fixed height for images */
+    object-fit: cover; /* Ensures the image doesn't get distorted */
+  }
+  
+  /* Card Body */
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  /* Title Styling */
+  .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  
+  /* Text Styling */
+  .card-text {
+    font-size: 1rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+  }
+  
+  /* Doctors Availability and Working Hours */
+  .card-body p {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  
+  /* Button Styling */
+  .btn-sm {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%; /* Full width for the button */
+  }
+  
+  /* Colors for enable/disable buttons */
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  .table {
+    margin-top: 3rem;
+  }
+  
+  .doctor-info-table-div {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    overflow-x: scroll;
+  }
+  /* .doctor-info-table thead, tbody tr{
+    display: flex;
+    width: 100%;
+  }
+  .doctor-info-table thead, tbody tr td{
+    display: block;
+    width: 100%;
+  } */
+  .imagescard {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    direction: rtl; /* Ensure the container starts from the right */
+  }
+
+  
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    .col-lg-4 {
+      flex: 1 1 30%; /* Three cards per row on large screens */
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .col-md-6 {
+      flex: 1 1 45%; /* Two cards per row on medium screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .col-md-6 {
+      flex: 1 1 100%; /* One card per row on small screens */
+    }
+  }
+  

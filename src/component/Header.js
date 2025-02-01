@@ -5,7 +5,7 @@ import Maulilogo from '../assets/Images/mauli_logo.webp';
 import AppServices from "../services/AppServices";
 import axios from 'axios';
 
-const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServices }) => {
+const Header = ({ isMainMenuOpen, setisMainMenuOpen, scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServices, scrollToAboutUs,scrollToFooter , MobileMenuCloseFunc}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -19,7 +19,6 @@ const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServ
   };
   const [scrollLeft, setScrollLeft] = useState(0);
 
-  const [isMainMenuOpen, setisMainMenuOpen] = useState(false);
   const toggleMainMenu = () => {
     setIsMenuOpen(false);
     setisMainMenuOpen(!isMainMenuOpen);
@@ -112,9 +111,10 @@ const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServ
         alert("There was an error creating the appointment. Please try again later.");
       });
   };
+  
 
   return (
-    <header className="header">
+    <header className="header" onClick={MobileMenuCloseFunc}>
       <div className="header-main px-4">
         <div className="logo">
           <a href="#"><img src={Maulilogo} alt="Mauli Hospital" /></a>
@@ -126,10 +126,10 @@ const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServ
           <ul className="nav-list">
             <div className="headerspace d-flex">
               <li onClick={scrollToWhyChoose}><a href="#">Home</a></li>
-              <li onClick={scrollToWhyChoose}><a href="#">About</a></li>
-              <li onClick={scrollToWhyChoose}><a href="#">Contact Us</a></li>
-              <li><a href="#" onClick={scollTOPackage}>Health Packages</a></li>
-              <li><a href="#">Doctors</a></li>
+              <li onClick={scrollToAboutUs}><a href="#">About</a></li>
+              <li onClick={scrollToFooter}><a href="#">Contact Us</a></li>
+              {/* <li><a href="#" onClick={scollTOPackage}>Health Packages</a></li> */}
+              <li onClick={scollTODoctor}><a href="#">Doctors</a></li>
               <li>
                 <button className="appointment btn btn-success p-1 m-2" onClick={() => setIsModalOpen(true)}>
                   Appointments
@@ -152,11 +152,11 @@ const Header = ({ scollTODoctor, scrollToWhyChoose, scollTOPackage, scrollToServ
               <nav className="mobile-nav">
                 <ul>
                   <li onClick={scrollToWhyChoose}><a href="#">Home</a></li>
-                  <li onClick={scrollToWhyChoose}><a href="#">About</a></li>
-                  <li onClick={scrollToWhyChoose}><a href="#">Contact Us</a></li>
+                  <li onClick={scrollToAboutUs}><a href="#">About</a></li>
+                  <li onClick={scrollToFooter}><a href="#">Contact Us</a></li>
                   {/* <li><a href="#" onClick={scollTOPackage}>Health Packages</a></li> */}
-                  <li><a href="#">Doctors</a></li>
-                  <li className='mobile-menu-appointment-btn-list p-1'>
+                  <li onClick={scollTODoctor}><a href="#">Doctors</a></li>
+                  <li className='mobile-menu-appointment-btn-list p-0'>
                     <div className="mobile-menu-appointment btn btn-success p-1 " onClick={() => setIsModalOpen(true)}>
                       Appointments
                     </div>
