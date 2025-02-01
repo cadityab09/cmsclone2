@@ -207,7 +207,7 @@ function DoctorView() {
             </div>
             <div className="main-view">
                     <div className={`side-navbar`}>
-                        <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} toggleSubmenu={toggleSubmenu} />
+                        <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} toggleSubmenu={toggleSubmenu} changeSideNavStatus={changeSideNavStatus}/>
                     </div>
                     <div className="main-content">
                        
