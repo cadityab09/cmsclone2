@@ -169,11 +169,11 @@ const DoctorsInfo = () => {
         </div>
       </div>
 
-      <div className="mt-4 text-center">
+      {/* <div className="mt-4 text-center">
         <button className="btn btn-primary" onClick={viewEnabledDoctors}>
           View Enabled Doctors
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

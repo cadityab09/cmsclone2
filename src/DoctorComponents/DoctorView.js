@@ -69,9 +69,9 @@ function DoctorView() {
         { number: '1', name: 'dashboard', icon: 'fas fa-home', url: '/DoctorDashboard', isSubitem: false },
         { number: '2', name: 'patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
         { number: '4', name: 'Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
-        { number: '6', name: 'view Enquiries', icon: 'fas fa-question-circle', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
+        // { number: '6', name: 'view Enquiries', icon: 'fas fa-question-circle', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
         { number: '7', name: 'room', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem:true,subitem: subroom, isExpanded: false },
-        { number: '8', name: 'Service', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
+        // { number: '8', name: 'Service', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
         { number: '9', name: 'Doctors', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
     
     ]);
