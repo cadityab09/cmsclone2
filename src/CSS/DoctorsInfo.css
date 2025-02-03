@@ -1,10 +1,10 @@
 /* Container that holds the cards */
-.imagescard {
+/* .imagescard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-}
+} */
 
 /* Card Style */
 .doctor-list-item-card {

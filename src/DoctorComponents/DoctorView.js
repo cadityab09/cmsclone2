@@ -32,49 +32,51 @@ import doc3 from '../assets/img/doc3.jpg';
 import doc4 from '../assets/img/doc4.jpg';
 import doc5 from '../assets/img/doc5.jpg';
 import doc6 from '../assets/img/doc6.jpg';
+import PageNotFound from '../component/pagenotfound/PageNotFound';
 
 function DoctorView() {
     const [sideNavStatus, setSideNavStatus] = useState(false);
 
 
     const subpatient = [
-        { number: '1', name: 'Add patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem:false, },
-        { number: '2', name: 'view-patient-info', icon: 'fas fa-user', url: '/DoctorDashboard/AllPatient' },
-        { number: '3', name: 'add-patient-desa', icon: 'fas fa-user', url: '/DoctorDashboard/AllPatientDise' },
-        { number: '4', name: 'view-patient-desa', icon: 'fas fa-user', url: '/DoctorDashboard/viewPatientDise' },
-
-      ]
-    const subappointment = [
-        { number: '4', name: 'Create Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/create-appointment' },
-        { number: '5', name: 'View-Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/list-appointment' },
-    ]
-    const subservice = [
-        { number: '1', name: 'Create Service', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/create-service' },
-        { number: '2', name: 'View Service', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-service' },
-    ]
-    const subdoctor = [
-        { number: '1', name: 'Add Doctor', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/add-doctor' },
-        { number: '2', name: 'View Doctor', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-doctor' },
-        { number: '4', name: 'View Active Doctor', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-active-doctor' },
-    ]
-    const subroom = [
-        { number: '1', name: 'Add Room', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/add-room' },
-        { number: '2', name: 'View live Room', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-live-bed' },
-        { number: '3', name: 'View Room History', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/view-room-history' },
-       
-    ]
-
-    const [menuItems, setMenuItems] = useState([
-
-        { number: '1', name: 'dashboard', icon: 'fas fa-home', url: '/DoctorDashboard', isSubitem: false },
-        { number: '2', name: 'patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
-        { number: '4', name: 'Appointment', icon: 'fas fa-calendar-check', url: '/DoctorDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
-        // { number: '6', name: 'view Enquiries', icon: 'fas fa-question-circle', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
-        { number: '7', name: 'room', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem:true,subitem: subroom, isExpanded: false },
-        // { number: '8', name: 'Service', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
-        { number: '9', name: 'Doctors', icon: 'fa-solid fa-hospital', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
-    
-    ]);
+      { number: '1', name: 'Add patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem: false },
+      { number: '2', name: 'view-patient-info', icon: 'fas fa-user-circle', url: '/DoctorDashboard/AllPatient' },
+      { number: '3', name: 'add-patient-desa', icon: 'fas fa-notes-medical', url: '/DoctorDashboard/AllPatientDise' },
+      { number: '4', name: 'view-patient-desa', icon: 'fas fa-clipboard-list', url: '/DoctorDashboard/viewPatientDise' },
+  ];
+  
+  const subappointment = [
+      { number: '4', name: 'Create Appointment', icon: 'far fa-calendar-plus', url: '/DoctorDashboard/create-appointment' },
+      { number: '5', name: 'View-Appointment', icon: 'far fa-calendar-alt', url: '/DoctorDashboard/list-appointment' },
+  ];
+  
+  const subservice = [
+      { number: '1', name: 'Create Service', icon: 'fas fa-tools', url: '/DoctorDashboard/create-service' },
+      { number: '2', name: 'View Service', icon: 'fas fa-concierge-bell', url: '/DoctorDashboard/view-service' },
+  ];
+  
+  const subdoctor = [
+      { number: '1', name: 'Add Doctor', icon: 'fas fa-user-md', url: '/DoctorDashboard/add-doctor' },
+      { number: '2', name: 'View Doctor', icon: 'fas fa-stethoscope', url: '/DoctorDashboard/view-doctor' },
+      { number: '4', name: 'View Active Doctor', icon: 'fas fa-user-check', url: '/DoctorDashboard/view-active-doctor' },
+  ];
+  
+  const subroom = [
+      { number: '1', name: 'Add Room', icon: 'fas fa-bed', url: '/DoctorDashboard/add-room' },
+      { number: '2', name: 'View live Room', icon: 'fas fa-procedures', url: '/DoctorDashboard/view-live-bed' },
+      { number: '3', name: 'View Room History', icon: 'fas fa-history', url: '/DoctorDashboard/view-room-history' },
+  ];
+  
+  const [menuItems, setMenuItems] = useState([
+      { number: '1', name: 'dashboard', icon: 'fas fa-tachometer-alt', url: '/DoctorDashboard', isSubitem: false },
+      { number: '2', name: 'patient', icon: 'fas fa-user-friends', url: '/DoctorDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
+      { number: '4', name: 'Appointment', icon: 'far fa-clock', url: '/DoctorDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
+      { number: '6', name: 'view Enquiries', icon: 'fas fa-question', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
+      { number: '7', name: 'room', icon: 'fas fa-door-open', url: '/DoctorDashboard/room', isSubitem: true, subitem: subroom, isExpanded: false },
+      { number: '8', name: 'Service', icon: 'fas fa-concierge-bell', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
+      { number: '9', name: 'Doctors', icon: 'fas fa-user-nurse', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
+  ]);
+  
     
     const toggleSubmenu = (number) => {
         setMenuItems((prevItems) =>
@@ -88,16 +90,8 @@ function DoctorView() {
         setSideNavStatus(!sideNavStatus);
         console.log(sideNavStatus);
     };
-    // if(UserStorageService.getToken()==null || UserStorageService.getUser()==null) {
-    //     return(
-    //         <>
-    //             <div className='unilligible' style={{alignItems:'center', marginTop:'300px'}}>
-    //                 <h1>Page 404 error</h1>
-    //             </div>
-    //         </>
-    //     );
-    // }
-    // console.log(UserStorageService.getToken());
+    
+   
     const [doctors, setDoctors] = useState([
         {
           img: doc1,
@@ -199,7 +193,14 @@ function DoctorView() {
           return [...prevDoctors, newDoctor];
         });
       };
-
+    // if(UserStorageService.getToken()==null || UserStorageService.getUser()==null) {
+    //     return(
+    //         <>
+    //             <PageNotFound></PageNotFound>
+    //         </>
+    //     );
+    // }
+    // console.log(UserStorageService.getToken());
     return (
         <>
             <div className='dash-top-nav'>
@@ -207,7 +208,7 @@ function DoctorView() {
             </div>
             <div className="main-view">
                     <div className={`side-navbar`}>
-                        <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} toggleSubmenu={toggleSubmenu} changeSideNavStatus={changeSideNavStatus}/>
+                        <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} toggleSubmenu={toggleSubmenu} />
                     </div>
                     <div className="main-content">
                        

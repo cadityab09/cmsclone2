@@ -132,7 +132,7 @@ const Header = ({ isMainMenuOpen, setisMainMenuOpen, scollTODoctor, scrollToWhyC
               <li onClick={scollTODoctor}><a href="#">Doctors</a></li>
               <li>
                 <button className="appointment btn btn-success p-1 m-2" onClick={() => setIsModalOpen(true)}>
-                  Appointments
+                  Book Appointment
                 </button>
               </li>
             </div>
@@ -158,7 +158,7 @@ const Header = ({ isMainMenuOpen, setisMainMenuOpen, scollTODoctor, scrollToWhyC
                   <li onClick={scollTODoctor}><a href="#">Doctors</a></li>
                   <li className='mobile-menu-appointment-btn-list p-0'>
                     <div className="mobile-menu-appointment btn btn-success p-1 " onClick={() => setIsModalOpen(true)}>
-                      Appointments
+                      Book Appointment
                     </div>
                   </li>
                 </ul>

@@ -1,5 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion'; // Import framer-motion
 import '../CSS/HospitalSpecialities.css';
+import img1 from '../assets/Speciality/cardiology.png';
+import img2 from '../assets/Speciality/Ophthalmology.png';
+import img3 from '../assets/Speciality/Neurology.png';
+import img4 from '../assets/Speciality/Dentist.png';
+import img5 from '../assets/Speciality/cardiology.png';
+import img6 from '../assets/Speciality/Ophthalmology.png';
 
 const HospitalSpecialities = () => {
   const [animate, setAnimate] = useState(false);
@@ -27,36 +34,59 @@ const HospitalSpecialities = () => {
   }, []);
 
   const specialties = [
-    { id: 1, name: 'Cardiology', icon: 'https://cdn-icons-png.flaticon.com/128/10283/10283568.png' },
-    { id: 2, name: 'Cardiac Surgery', icon: 'https://cdn-icons-png.flaticon.com/128/8098/8098660.png' },
-    { id: 7, name: 'Gastroenterology', icon: 'https://cdn-icons-png.flaticon.com/128/8566/8566694.png' },
-    { id: 8, name: 'Liver Transplant', icon: 'https://cdn-icons-png.flaticon.com/128/6851/6851630.png' },
-    { id: 9, name: 'General Surgery', icon: 'https://cdn-icons-png.flaticon.com/128/10453/10453694.png' },
-    { id: 10, name: 'Critical Care', icon: 'https://cdn-icons-png.flaticon.com/128/10405/10405793.png' },
+    { id: 1, name: 'Cardiology', img: img1 },
+    { id: 2, name: 'Ophthalmology', img: img2 },
+    { id: 7, name: 'Neurology', img: img3 },
+    { id: 8, name: 'Dentist', img: img4 },
+    { id: 9, name: 'Cardiology', img: img5 },
+    { id: 10, name: 'Ophthalmology', img: img6 },
   ];
 
+  // Define motion variants for fade-in and slide-in animations
+  const sectionVariant = {
+    initial: { opacity: 0, y: 50 }, // Start hidden with a slight vertical offset
+    whileInView: { opacity: 1, y: 0 }, // Fade in and slide into position
+    transition: { duration: 5 },
+  };
+
+  const cardVariant = {
+    initial: { opacity: 0, x: -100 }, // Start from the left (off-screen)
+    whileInView: { opacity: 1, x: 0 }, // Move to position and fade in
+    transition: { duration: 10.6 },
+  };
+
   return (
-    <section ref={sectionRef} className={`clinical-excellence ${animate ? 'animate' : ''}`}>
+    <motion.section
+      ref={sectionRef}
+      className={`clinical-excellence ${animate ? 'animate' : ''}`}
+      variants={sectionVariant}
+      initial="initial"
+      whileInView="whileInView"
+    >
       <div className="excellence-container">
         <h1>Specialities</h1>
-        <p>Explore Specialized Services Available at the Sahyadri Hospitals</p>
+        <p>Explore Specialized Services Available at the Mauli Hospitals</p>
 
-        <div className="specialties-grid">
+        <motion.div className="specialties-grid">
           {specialties.map((specialty) => (
-            <div key={specialty.id} className="specialty-card">
+            <motion.div
+              key={specialty.id}
+              className="specialty-card"
+              variants={cardVariant} // Apply card animation
+            >
               <div className="specialty-icon">
-                <img src={specialty.icon} alt={specialty.name} />
+                <img src={specialty.img} alt={specialty.name} />
               </div>
               <span>{specialty.name}</span>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <div className="view-all-container">
           {/* <button className="view-all-btn">View All Specialities</button> */}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

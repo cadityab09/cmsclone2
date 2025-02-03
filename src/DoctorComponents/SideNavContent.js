@@ -5,7 +5,7 @@ import "../DoctorCSS/SideNavContent.css";
 import UserStorageService from '../services/UserStorageService';
 import moulilogo from "../assets/Images/mauli_logo.webp"
 
-const SideNavContent = ({ sideNavStatus, list, toggleSubmenu, changeSideNavStatus }) => {
+const SideNavContent = ({ sideNavStatus, list, toggleSubmenu }) => {
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
   
@@ -30,8 +30,6 @@ const SideNavContent = ({ sideNavStatus, list, toggleSubmenu, changeSideNavStatu
       console.log(item.isExpanded);
 
       return;
-    } else {
-      changeSideNavStatus();
     }
     navigate(item.url);
   }

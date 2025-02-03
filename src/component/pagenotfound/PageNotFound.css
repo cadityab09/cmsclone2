@@ -1,0 +1,85 @@
+
+  
+  .not-found-container {
+    display: flex;
+    min-height: 100vh;
+    place-items: center;
+    padding: 24px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .error-code {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4f46e5; /* Indigo */
+  }
+  
+  .icon-container {
+    font-size: 4rem;
+    color: #4f46e5; 
+  }
+
+  .error-title {
+    margin-top: 16px;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #111827; /* Gray 900 */
+    line-height: 1.2;
+  }
+  
+  .error-message {
+    margin-top: 24px;
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #6b7280; /* Gray 500 */
+  }
+  
+  .button-container {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .btn-primary {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: #4f46e5; /* Indigo */
+    text-decoration: none;
+    border-radius: 6px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #4338ca; /* Darker Indigo */
+  }
+  
+  .btn-primary:focus-visible {
+    outline: 2px solid #4338ca;
+    outline-offset: 2px;
+  }
+  
+  .btn-secondary {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #111827; /* Gray 900 */
+    text-decoration: none;
+  }
+  
+  .btn-secondary span {
+    margin-left: 4px;
+  }
+  
