@@ -23,7 +23,7 @@ const AddRoom = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8084/api/room/add", dataToSend);
+      const response = await axios.post(AppServices.getUrl()+"/room/add", dataToSend, {headers: AppServices.getHeaders()});
       alert("Room added successfully!");
       setRoomData({
         patient: "",

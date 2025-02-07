@@ -1,138 +1,190 @@
-/* Container that holds the cards */
+/* Container Styling */
 
-.doctor-list-container {
-    display: flex;
-    background: #f9f9f9;
-    
-  }
-  
-  .doctor-list-item-card {
-    padding: 20px;
-    /* width: 300px; */
-  }
-  
-  .imagescard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  /* Card Style */
-  .doctor-list-item-card {
-    
-    width: 100%; 
-    max-width: 70%; 
-    min-height: 70%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    transition: transform 0.3s ease;
-  }
-  
-  /* On hover: scale the card slightly for a better interaction */
-  .card:hover {
-    transform: scale(1.05);
-  }
-  
-  .enabled-doctor-header {
-    background-color: #f9f9f9;
-  }
-  
-  /* Image Styling */
-  .card-img-top {
-    width: 100%;
-    height: 200px; /* Fixed height for images */
-    object-fit: cover; /* Ensures the image doesn't get distorted */
-  }
-  
-  /* Card Body */
-  .card-body {
-    padding: 1.25rem;
-  }
-  
-  /* Title Styling */
-  .card-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  
-  /* Text Styling */
-  .card-text {
-    font-size: 1rem;
-    color: #6c757d;
-    margin-bottom: 10px;
-  }
-  
-  /* Doctors Availability and Working Hours */
-  .card-body p {
-    font-size: 0.95rem;
-    margin-bottom: 8px;
-  }
-  
-  /* Button Styling */
-  .btn-sm {
-    font-size: 0.875rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
-    width: 100%; /* Full width for the button */
-  }
-  
-  /* Colors for enable/disable buttons */
-  .btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-  }
-  
-  .btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-  }
-  
-  .table {
-    margin-top: 3rem;
-  }
-  
-  .doctor-info-table-div {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    overflow-x: scroll;
-  }
-  /* .doctor-info-table thead, tbody tr{
-    display: flex;
-    width: 100%;
-  }
-  .doctor-info-table thead, tbody tr td{
-    display: block;
-    width: 100%;
-  } */
-  .imagescard {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    direction: rtl; /* Ensure the container starts from the right */
-  }
+.dummy-doctor-list-container {
+  display: flex;
+  flex-wrap: nowrap;
+  background: #f9f9f9;
+  gap: 20px;
+  overflow-x: auto;
+  /* Allow horizontal scrolling */
+  padding: 20px;
+  scroll-behavior: smooth;
+  /* Smooth scrolling for better UX */
+}
 
-  
-  /* Responsive Styles */
-  @media (max-width: 1200px) {
-    .col-lg-4 {
-      flex: 1 1 30%; /* Three cards per row on large screens */
-    }
+.dummy-doctor-list-item {
+  width: 100%;
+  min-width: 200px;
+}
+
+/* Individual Doctor Card */
+.dummy-doctor-list-item-card {
+  width: 100%;
+  margin: 20px auto;
+  max-width: 350px;
+  min-width: 250px;
+  min-height: 70%;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dummy-imagescard {
+  gap: 20px;
+}
+
+/* Hover Interaction */
+.dummy-doctor-list-item-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  /* Fixed height for consistency */
+  object-fit: cover;
+  /* Prevents image distortion */
+}
+
+/* Card Body */
+.dummy-doctor-card-body {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+/* Card Title */
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Card Text */
+.card-text {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+/* Doctors Availability and Details */
+.dummy-doctor-card-body p {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: #495057;
+}
+
+/* Button Styling */
+.btn-primary {
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  /* Full-width buttons for consistency */
+  transition: background-color 0.3s ease;
+}
+
+/* Button Hover States */
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Enabled and Disabled Buttons */
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .doctor-list-item-card {
+    max-width: 30%;
+    /* Adjust for three cards per row */
   }
-  
-  @media (max-width: 992px) {
-    .col-md-6 {
-      flex: 1 1 45%; /* Two cards per row on medium screens */
-    }
+}
+
+@media (max-width: 992px) {
+  .doctor-list-item-card {
+    max-width: 45%;
+    /* Adjust for two cards per row */
   }
-  
-  @media (max-width: 768px) {
-    .col-md-6 {
-      flex: 1 1 100%; /* One card per row on small screens */
-    }
+}
+
+@media (max-width: 768px) {
+  .doctor-list-item-card {
+    max-width: 100%;
+    /* One card per row for smaller screens */
   }
-  
+}
+
+/* Table for Doctor Info */
+.doctor-info-table-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-x: auto;
+  /* Horizontal scroll for tables */
+  margin-top: 3rem;
+}
+
+/* Removed unnecessary commented-out styles */
+
+/* Global Styling */
+.dummy-doctor-header {
+  background-color: #f9f9f9;
+}
+
+
+/* swipper */
+.swiper-pagination-fraction,
+.swiper-pagination-custom,
+.swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  bottom: var(--swiper-pagination-bottom, 2px) !important;
+}
+
+.swiper-wrapper {
+  /* gap: 5px; */
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.swiper-slide.swiper-slide-active {
+  margin-right: 0;
+  width: 100%;
+  /* min-width: 200px; */
+}
+
+.swiper-slide.swiper-slide-active {
+  margin-right: 0;
+  width: 100%;
+  /* min-width: 200px; */
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+
+  background-color:rgb(204 204 204 / 60%);
+  padding: 33px 13px;
+}

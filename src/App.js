@@ -38,6 +38,7 @@ import EnabledDoctors from "./component/DoctorsInfo";
 import Scroll from './component/ScrollingTitle'
 import HospitalSpecialities from './component/HospitalSpecialities';
 import DummyDoctorsData from './component/DummyDoctorsData';
+import EnquiryFormMap from './component/EnquiryFormMap';
 
 
 function App() {
@@ -111,9 +112,13 @@ function App() {
               <DummyDoctorsData />
               </div>
               <PatientExperience />
+               
               <div ref={whyChooseRef}>
                 <WhyChoose />
               </div> 
+              <div >
+                <EnquiryFormMap />
+              </div>
               {/* <Map/> */}
               <div ref={footerRef}>
               <Footer/>

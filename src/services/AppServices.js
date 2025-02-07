@@ -2,7 +2,8 @@ import axios from "axios";
 import UserStorageService from "./UserStorageService"; // Handles user token storage/retrieval
 
 // Base URL for the API
-const BASE_REST_API_URL = "http://localhost:8084/api";
+// const BASE_REST_API_URL = "http://localhost:8084/api";
+const BASE_REST_API_URL = "https://cmsbackendtest.onrender.com/api";
 
 class AppServices {
   // Generic method to set up headers for requests, including authentication
@@ -11,6 +12,10 @@ class AppServices {
       Authorization: `Bearer ${UserStorageService.getToken()}`,
       "Content-Type": "application/json",
     };
+  }
+
+  getUrl() {
+    return BASE_REST_API_URL;
   }
 
   /**

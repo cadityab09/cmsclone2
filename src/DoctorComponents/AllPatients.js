@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../DoctorCSS/AllPatients.css";
 import UserStorageService from "../services/UserStorageService";
+import AppServices from "../services/AppServices";
 
 function AllPatients() {
   const [patients, setPatients] = useState([]);
@@ -15,7 +16,7 @@ function AllPatients() {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await axios.get("http://localhost:8084/api/patients");
+        const response = await axios.get(AppServices.getUrl()+"/patients", {headers: AppServices.getHeaders()});
         setPatients(response.data);
         setFilteredPatients(response.data);
         setLoading(false);
@@ -43,7 +44,7 @@ function AllPatients() {
     if (confirmDelete) {
       try {
         // Make API request to delete patient from the database
-        await axios.delete(`http://localhost:8084/api/patients/${patientId}`, {
+        await axios.delete(AppServices.getUrl()+`/patients/${patientId}`, {
           headers: {
             Authorization: `Bearer ${UserStorageService.getToken()}`,
             "Content-Type": "application/json"

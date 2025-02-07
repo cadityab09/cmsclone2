@@ -5,72 +5,62 @@ import "../DoctorCSS/SideNavContent.css";
 import UserStorageService from '../services/UserStorageService';
 import moulilogo from "../assets/Images/mauli_logo.webp"
 
-const SideNavContent = ({ sideNavStatus, list, toggleSubmenu }) => {
+const SideNavContent = ({ sideNavStatus, list, toggleSubmenu, setSideNavStatus }) => {
   const [expandedItem, setExpandedItem] = useState(null);
   const navigate = useNavigate();
-  
-  const handleRoutes = (item) => {
+
+  const handleRoutes = (item, idx) => {
 
     if (item.url == "/") {
       UserStorageService.signOut();
     }
     if (item.isSubitem) {
       console.log(item.subitem);
-      // return (
-      //   <>
-      //     <ul className='sidebar-subitem-list'>
-      //       <a title={item.subitem.name} className="sidebar-subitem-link">
-      //         <i className={${item.subitem.icon} p-3}></i>
-      //         <span className="sidebar-text">{item.subitem.name}</span>
-      //       </a>
-      //     </ul>
-      //   </>
-      // );
+
       toggleSubmenu(item.number);
       console.log(item.isExpanded);
 
+      if (!item.isExpanded) {
+        const subitemContainer = document.querySelector(
+          `.nav-list-item.sidebar-item:nth-child(${idx+1}) .subitem-container`
+        );
+        console.log(idx);
+        if (subitemContainer) {
+          subitemContainer.scrollIntoView({
+            behavior: 'smooth', // Smooth scrolling animation
+            block: 'start', // Align to the top of the viewport
+          });
+        }
+      }
+
       return;
     }
+    setSideNavStatus(false);
     navigate(item.url);
   }
-  function toggleExpand(button) {
-  const subitems = button.nextElementSibling; // Select the subitems
-  const container = document.getElementById('doctorContainer'); // The container
-  
-  // Toggle the "expanded" class
-  subitems.classList.toggle('expanded');
-  
-  // Scroll the container to bring the expanded item into view
-  if (subitems.classList.contains('expanded')) {
-    subitems.scrollIntoView({
-      behavior: 'smooth', // Smooth scrolling animation
-      block: 'start', // Align to the top of the container
-    });
-  }
-}
 
   return (
     <div className={`side-nav-content ${sideNavStatus ? 'nav-list-open' : ''}`}>
       <div className='dashboard-logo-img-container mt-3 '>
-      <img className='dashboard-logo-img' src={moulilogo} width={"150px"} style={{color: "purple"}}></img>
-      <hr  style={{color:"white" }}></hr>
+        <img className='dashboard-logo-img' src={moulilogo} width={"150px"} style={{ color: "purple" }}></img>
+        <hr style={{ color: "white" }}></hr>
       </div>
       <ul className="nav-list">
-        {list.map((item) => (
+        {list.map((item, idx) => (
           <li key={item.number} className="nav-list-item sidebar-item" >
-            <a title={item.name} className="sidebar-link" onClick={() => handleRoutes(item)} >
+            <a title={item.name} className="sidebar-link" onClick={() => handleRoutes(item, idx)} >
               <i className={`${item.icon} p-3`}></i>
               <span className="sidebar-text">{item.name}</span>
             </a>
-            
+
             {item.isSubitem && (
-              <ul className='subitem-container' 
-              style={{
-                maxHeight: item.isExpanded ? '500px' : '0px', // Set a max value greater than expected content height
-                overflow: item.isExpanded ? 'hidden' : 'visible'
-              }}
+              <ul className='subitem-container'
+                style={{
+                  maxHeight: item.isExpanded ? '500px' : '0px', // Set a max value greater than expected content height
+                  overflow: item.isExpanded ? 'hidden' : 'visible'
+                }}
               >
-                {item.subitem.map((subitem) => (
+                {item.subitem.map((subitem, idx) => (
                   <li key={subitem.name} className="nav-list-subitem sidebar-subitem" onClick={() => handleRoutes(subitem)} >
                     <a title={subitem.name} className="sidebar-link-subitem">
                       <i className={`${subitem.icon} p-3`}></i>

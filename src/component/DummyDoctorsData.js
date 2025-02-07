@@ -1,18 +1,19 @@
-import React, { useEffect, useState, useRef } from "react";
-import "../DoctorCSS/DoctorInfo.css";
-import img1 from '../assets/img/doc1.jpg'
-import img2 from '../assets/img/doc2.jpg'
-import img3 from '../assets/img/doc3.jpg'
-import img4 from '../assets/img/doc4.jpg'
+import React, { useState, useRef } from "react";
+import "../CSS/DummyDoctors.css"
+import img1 from "../assets/img/doc1.jpg";
+import img2 from "../assets/img/doc2.jpg";
+import img3 from "../assets/img/doc3.jpg";
+import img4 from "../assets/img/doc4.jpg";
+
+// Import Swiper
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const DummyDoctorsData = () => {
-  const [doctors, setDoctors] = useState([]);
-  const [selectedDoctor, setSelectedDoctor] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const scrollRef = useRef(null);
-
-  // Dummy doctor data
-  const dummyDoctors = [
+  const [doctors] = useState([
     {
       id: 1,
       name: "Dr. John Doe",
@@ -28,7 +29,6 @@ const DummyDoctorsData = () => {
       img: img2,
       experience: "8 years",
       location: "Los Angeles, USA",
-      status: "ENABLED",
     },
     {
       id: 3,
@@ -37,17 +37,16 @@ const DummyDoctorsData = () => {
       img: img3,
       experience: "12 years",
       location: "Chicago, USA",
-      status: "ENABLED",
     },
     {
       id: 4,
-      name: "Dr. Robert Brown",
-      specialties: "Pediatrician",
+      name: "Dr. Alice Johnson",
+      specialties: "Dermatologist",
       img: img4,
-      experience: "12 years",
-      location: "Chicago, USA",
-      status: "ENABLED",
-    },{
+      experience: "7 years",
+      location: "San Francisco, USA",
+    },
+    {
       id: 5,
       name: "Dr. John Doe",
       specialties: "Cardiologist",
@@ -55,53 +54,9 @@ const DummyDoctorsData = () => {
       experience: "10 years",
       location: "New York, USA",
     },
-    {
-      id: 6,
-      name: "Dr. Jane Smith",
-      specialties: "Neurologist",
-      img: img2,
-      experience: "8 years",
-      location: "Los Angeles, USA",
-      status: "ENABLED",
-    },
-    {
-      id: 7,
-      name: "Dr. Robert Brown",
-      specialties: "Pediatrician",
-      img: img3,
-      experience: "12 years",
-      location: "Chicago, USA",
-      status: "ENABLED",
-    },
-    {
-      id: 8,
-      name: "Dr. Robert Brown",
-      specialties: "Pediatrician",
-      img: img4,
-      experience: "12 years",
-      location: "Chicago, USA",
-      status: "ENABLED",
-    }
-  ];
-
-  useEffect(() => {
-    setDoctors(dummyDoctors);
-  
-    // Initialize the scroll position to the far right
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-    }
-  
-    // Scroll every 2 seconds from right to left
-    const interval = setInterval(() => {
-      if (scrollRef.current) {
-        scrollRef.current.scrollLeft -= 200; // Scroll left (right to left direction)
-      }
-    }, 2000);
-  
-    return () => clearInterval(interval);
-  }, []);
-  
+  ]);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleViewDetails = (doctor) => {
     setSelectedDoctor(doctor);
@@ -116,22 +71,49 @@ const DummyDoctorsData = () => {
   };
 
   return (
-    <div className="enabled-doctor-view">
-      <div className="enabled-doctor-card-list">
+    <div className="dummy-doctor-view">
+      <div className="dummy-doctor-card-list">
         <h1>Our Doctors</h1>
-        <p></p>
-        <div className="imagescard mt-4" ref={scrollRef} style={{ display: "flex", overflowX: "auto", scrollBehavior: "smooth" }}>
-          <div className="enabled-doctor-list-container" style={{ display: "flex" }}>
-            {doctors.length > 0 ? (
-              doctors.map((doctor) => (
-                <div className="enabled-doctor-list-item" key={doctor.id}>
-                  <div className="enabled-doctor-list-item-card">
+        <div className="dummy-imagescard mt-4">
+          {/* Swiper Component */}
+          <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            // spaceBetween={20}
+            // slidesPerView={3}
+            loop={true}
+            
+            autoplay={isModalOpen ? false : { delay: 2000 }} 
+            pagination={{ clickable: true }}
+            navigation
+            breakpoints={{
+              // when window width is >= 1200px
+              1200: {
+                slidesPerView: 4, // 4 slides per view on large screens (lg)
+              },
+              // when window width is >= 992px
+              992: {
+                slidesPerView: 3, // 3 slides per view on medium screens (md)
+              },
+              // when window width is >= 768px
+              768: {
+                slidesPerView: 3, // 1 slide per view on small screens (sm)
+              },
+              // default settings for smaller screens (mobile)
+              0: {
+                slidesPerView: 1, // 1 slide per view on mobile
+              }
+            }}
+          >
+            {doctors.map((doctor) => (
+              <SwiperSlide key={doctor.id}>
+                <div className="dummy-doctor-list-item">
+                  <div className="dummy-doctor-list-item-card">
                     <img
                       src={doctor.img}
                       className="card-img-top"
                       alt={doctor.name}
                     />
-                    <div className="enabled-doctor-card-body">
+                    <div className="dummy-doctor-card-body">
                       <h5 className="card-title">{doctor.name}</h5>
                       <p className="card-text">( {doctor.specialties} )</p>
                       <button
@@ -143,14 +125,13 @@ const DummyDoctorsData = () => {
                     </div>
                   </div>
                 </div>
-              ))
-            ) : (
-              <p className="text-center">Doctors are not Available.</p>
-            )}
-          </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
 
+      {/* Modal Section */}
       {isModalOpen && selectedDoctor && (
         <div
           id="modal-overlay"
@@ -168,7 +149,6 @@ const DummyDoctorsData = () => {
               aria-label="Close"
               onClick={closeModal}
             ></button>
-
             <div className="text-center">
               <img
                 src={selectedDoctor.img}
@@ -183,7 +163,8 @@ const DummyDoctorsData = () => {
                 }
                 return (
                   <p key={key}>
-                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong> {value}
+                    <strong>{key.charAt(0).toUpperCase() + key.slice(1)}:</strong>{" "}
+                    {value}
                   </p>
                 );
               })}

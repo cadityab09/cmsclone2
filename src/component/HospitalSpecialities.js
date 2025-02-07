@@ -43,36 +43,35 @@ const HospitalSpecialities = () => {
   ];
 
   // Define motion variants for fade-in and slide-in animations
-  const sectionVariant = {
-    initial: { opacity: 0, y: 50 }, // Start hidden with a slight vertical offset
-    whileInView: { opacity: 1, y: 0 }, // Fade in and slide into position
-    transition: { duration: 5 },
+  const fadeIn = {
+    initial: { opacity: 0 },
+    whileInView: { opacity: 1 },
+    transition: { duration:  2},
   };
 
-  const cardVariant = {
-    initial: { opacity: 0, x: -100 }, // Start from the left (off-screen)
-    whileInView: { opacity: 1, x: 0 }, // Move to position and fade in
-    transition: { duration: 10.6 },
-  };
+  const cardVariant = (idx) => ({
+    initial: { opacity: 0},
+    whileInView: { opacity: 1 },
+    transition: { duration: 0.5, delay: (idx * 0.2),  ease: "easeInOut" }, // Slight delay for staggered effect
+  });
+
 
   return (
     <motion.section
       ref={sectionRef}
-      className={`clinical-excellence ${animate ? 'animate' : ''}`}
-      variants={sectionVariant}
-      initial="initial"
-      whileInView="whileInView"
+      className={`clinical-excellence`}
+      {...fadeIn}
     >
       <div className="excellence-container">
         <h1>Specialities</h1>
         <p>Explore Specialized Services Available at the Mauli Hospitals</p>
 
         <motion.div className="specialties-grid">
-          {specialties.map((specialty) => (
+          {specialties.map((specialty,idx) => (
             <motion.div
               key={specialty.id}
               className="specialty-card"
-              variants={cardVariant} // Apply card animation
+              {...cardVariant(idx)} // Apply card animation
             >
               <div className="specialty-icon">
                 <img src={specialty.img} alt={specialty.name} />

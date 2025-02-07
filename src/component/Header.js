@@ -56,7 +56,7 @@ const Header = ({ isMainMenuOpen, setisMainMenuOpen, scollTODoctor, scrollToWhyC
       })
       .catch(error => {
         console.error("Error fetching doctors:", error);
-        alert("There was an error fetching the doctor data. Please try again later.");
+        // alert("There was an error fetching the doctor data. Please try again later.");
       });
   }, []);
 

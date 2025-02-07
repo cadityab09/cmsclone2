@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import AppServices from "../services/AppServices";
 
 const AssignedPatientsList = () => {
   const [patientHistory, setPatientHistory] = useState([]);
@@ -12,7 +13,7 @@ const AssignedPatientsList = () => {
   // Fetch the list of assigned patients and their history
   const fetchPatientHistory = async () => {
     try {
-      const response = await axios.get("http://localhost:8084/api/beds/history");
+      const response = await axios.get(AppServices.getUrl()+"/beds/history", {headers: AppServices.getHeaders()});
       setPatientHistory(response.data); // Assuming response.data contains history
     } catch (error) {
       console.error("Error fetching patient history:", error);

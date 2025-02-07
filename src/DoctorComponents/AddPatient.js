@@ -56,7 +56,7 @@ function AddPatient() {
 
     // Send data to the backend
     try {
-      const response = await axios.post('http://localhost:8084/api/patients', patientData, {headers: AppServices.getHeaders()});
+      const response = await axios.post(AppServices.getUrl()+'/patients', patientData, {headers: AppServices.getHeaders()});
 
       console.log('Patient added:', response.data);
       navigate('/DoctorDashboard/AllPatient');

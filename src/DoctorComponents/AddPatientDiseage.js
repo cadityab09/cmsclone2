@@ -38,7 +38,7 @@ function AddPatientDisease() {
   useEffect(() => {
     const fetchPatients = async () => {
       try {
-        const response = await axios.get('http://localhost:8084/api/patients', {headers: AppServices.getHeaders()});
+        const response = await axios.get(AppServices.getUrl()+'/patients', {headers: AppServices.getHeaders()});
         setPatients(response.data);
       } catch (error) {
         console.error('Error fetching patients:', error);
@@ -101,7 +101,7 @@ function AddPatientDisease() {
     console.log("Patient Data Being Sent:", patientData); // Debugging log
 
     try {
-      const response = await axios.post('http://localhost:8084/api/patientdisease', patientData,  {headers: AppServices.getHeaders()});
+      const response = await axios.post(AppServices.getUrl()+'/patientdisease', patientData,  {headers: AppServices.getHeaders()});
 
       console.log('Patient disease added:', response.data);
       setAlertMessage('Patient disease added successfully!');

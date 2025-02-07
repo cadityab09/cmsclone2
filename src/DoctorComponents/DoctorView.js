@@ -71,10 +71,10 @@ function DoctorView() {
       { number: '1', name: 'dashboard', icon: 'fas fa-tachometer-alt', url: '/DoctorDashboard', isSubitem: false },
       { number: '2', name: 'patient', icon: 'fas fa-user-friends', url: '/DoctorDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
       { number: '4', name: 'Appointment', icon: 'far fa-clock', url: '/DoctorDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
-      { number: '6', name: 'view Enquiries', icon: 'fas fa-question', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
-      { number: '7', name: 'room', icon: 'fas fa-door-open', url: '/DoctorDashboard/room', isSubitem: true, subitem: subroom, isExpanded: false },
-      { number: '8', name: 'Service', icon: 'fas fa-concierge-bell', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
-      { number: '9', name: 'Doctors', icon: 'fas fa-user-nurse', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
+      { number: '5', name: 'view Enquiries', icon: 'fas fa-question', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
+      { number: '6', name: 'room', icon: 'fas fa-door-open', url: '/DoctorDashboard/room', isSubitem: true, subitem: subroom, isExpanded: false },
+      { number: '7', name: 'Service', icon: 'fas fa-concierge-bell', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
+      { number: '8', name: 'Doctors', icon: 'fas fa-user-nurse', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
   ]);
   
     
@@ -193,14 +193,14 @@ function DoctorView() {
           return [...prevDoctors, newDoctor];
         });
       };
-    // if(UserStorageService.getToken()==null || UserStorageService.getUser()==null) {
-    //     return(
-    //         <>
-    //             <PageNotFound></PageNotFound>
-    //         </>
-    //     );
-    // }
-    // console.log(UserStorageService.getToken());
+    if(UserStorageService.getToken()==null || UserStorageService.getUser()==null) {
+        return(
+            <>
+                <PageNotFound></PageNotFound>
+            </>
+        );
+    }
+    console.log(UserStorageService.getToken());
     return (
         <>
             <div className='dash-top-nav'>
@@ -208,7 +208,7 @@ function DoctorView() {
             </div>
             <div className="main-view">
                     <div className={`side-navbar`}>
-                        <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} toggleSubmenu={toggleSubmenu} />
+                        <SideNavContent list={menuItems} sideNavStatus={sideNavStatus} setSideNavStatus={setSideNavStatus} toggleSubmenu={toggleSubmenu} />
                     </div>
                     <div className="main-content">
                        

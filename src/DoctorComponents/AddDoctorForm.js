@@ -54,7 +54,7 @@ const DoctorForm = ({ refreshDoctors }) => {
     };
 
     try {
-      const response = await fetch('http://localhost:8084/api/doctors', {
+      const response = await fetch(AppServices.getUrl()+'/doctors', {
         method: 'POST',
         headers: AppServices.getHeaders(),
         body: JSON.stringify(formattedDoctor),
@@ -177,7 +177,7 @@ const DoctorForm = ({ refreshDoctors }) => {
           Status:
           <select 
             name='status'
-            value={doctor.status}
+            value={doctor.doctorStatus}
             className=""
             onChange={handleChange}
             required>

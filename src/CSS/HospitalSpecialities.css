@@ -21,7 +21,7 @@
   .excellence-container {
     max-width: 100%;
     margin: 0 auto;
-    animation: fadeInZoom 1s ease-in-out;
+    /* animation: fadeInZoom 1s ease-in-out; */
     padding: 50px 20px;
     box-sizing: content-box;
     background-color: #ffffff;
@@ -31,14 +31,14 @@
     font-size: 2rem;
     font-weight: bold;
     color: #333;
-    animation: fadeInZoom 1.2s ease-in-out;
+    /* animation: fadeInZoom 1.2s ease-in-out; */
   }
   
   .excellence-container p {
     font-size: 1rem;
     color: #666;
     margin-top: 10px;
-    animation: fadeInZoom 1.4s ease-in-out;
+    /* animation: fadeInZoom 1.4s ease-in-out; */
   }
   
   .specialties-grid {
@@ -56,8 +56,8 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 150px;
-    animation: fadeInZoom 1.6s ease-in-out;
-    transition: transform 0.3s ease-in-out;
+    /* animation: fadeInZoom 1.6s ease-in-out; */
+    /* transition: transform 0.3s ease-in-out; */
   }
   
   .specialty-card:hover {
@@ -82,8 +82,8 @@
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
-    animation: fadeInZoom 1.8s ease-in-out;
+    /* transition: background 0.3s ease-in-out; */
+    /* animation: fadeInZoom 1.8s ease-in-out; */
   }
   
   .view-all-btn:hover {

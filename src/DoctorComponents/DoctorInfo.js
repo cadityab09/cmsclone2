@@ -37,19 +37,20 @@ const DoctorsInfo = () => {
     setUserRole(role); // Store the role
   }, []);
 
-  const enabledDoctors = doctors.filter((doctor) => doctor.status=="ENABLED");
+  const enabledDoctors = doctors.filter((doctor) => doctor.doctorStatus=="ENABLED");
 
   const toggleDoctorStatus = async (id) => {
     const updatedDoctor = doctors.find((doctor) => doctor.id === id);
 
     if (updatedDoctor) {
-      updatedDoctor.status =
-        updatedDoctor.status === "ENABLED" ? "DISABLED" : "ENABLED";
+      updatedDoctor.doctorStatus =
+        updatedDoctor.doctorStatus === "ENABLED" ? "DISABLED" : "ENABLED";
     }
 
     try {
       const response = await axios.post(
-        `http://localhost:8084/api/doctors`,
+        AppServices.getUrl()+
+        `/doctors`,
         updatedDoctor,
         {
           headers: {
@@ -66,7 +67,7 @@ const DoctorsInfo = () => {
   };
 
   const viewEnabledDoctors = () => {
-    const enabledDoctors = doctors.filter((doctor) => doctor.status === "ENABLED");
+    const enabledDoctors = doctors.filter((doctor) => doctor.doctorStatus === "ENABLED");
     navigate("/", { state: { enabledDoctors } });
   };
 
@@ -132,11 +133,11 @@ const DoctorsInfo = () => {
                   <td>
                     <button
                       className={`btn ${
-                        doctor.status == "DISABLED" ? "btn-success" : "btn-danger"
+                        doctor.doctorStatus == "DISABLED" ? "btn-success" : "btn-danger"
                       } btn-sm`}
                       onClick={() => toggleDoctorStatus(doctor.id)}
                     >
-                      {doctor.status == "ENABLED" ? "Disable" : "Enable"}
+                      {doctor.doctorStatus == "ENABLED" ? "Disable" : "Enable"}
                     </button>
                   </td>
                   <td>

@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./room.css";
+import AppServices from "../services/AppServices";
 
 const Room = ({ bed, openModal, handleDischarge }) => {
   return (
@@ -51,7 +52,7 @@ const ClinicRoomManagement = () => {
 
   const fetchBeds = async () => {
     try {
-      const response = await await axios.get(`http://localhost:8084/api/beds/status`);
+      const response = await axios.get(AppServices.getUrl()+`/beds/status`, {headers: AppServices.getHeaders()});
       const data = await response.data;
       console.log(data);  
       return data; // Assume the API returns a structure like { beds: [...] }

@@ -12,7 +12,7 @@ function DashboardOverview() {
     const fetchAppointments = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8084/api/appointments"
+          AppServices.getUrl()+"/appointments"
         , {headers: AppServices.getHeaders()}); // Update with your endpoint
         if (response && response.data) {
           setAppointmentsCount(response.data.length); // Assuming response.data is an array of appointments
@@ -28,7 +28,8 @@ function DashboardOverview() {
     const fetchPatientsCount = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8084/api/patients",{headers: AppServices.getHeaders()}
+          AppServices.getUrl()+
+          "/patients",{headers: AppServices.getHeaders()}
         ); // Update with your endpoint
         if (response && Array.isArray(response.data)) {
           setPatientsCount(response.data.length); // Assuming response.data is an array of patients

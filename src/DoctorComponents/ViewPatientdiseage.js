@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"; // Bootstrap styles
 import "../DoctorCSS/AddPatient.css"; // Custom CSS
 import axios from "axios"; // For API requests
+import AppServices from "../services/AppServices";
 
 function ViewPatientdiseage() {
   const [patients, setPatients] = useState([]); // State to hold the list of patients
@@ -17,7 +18,7 @@ function ViewPatientdiseage() {
     const fetchPatients = async () => {
       try {
         // Use the correct endpoint
-        const response = await axios.get("http://localhost:8084/api/patientdisease");
+        const response = await axios.get(AppServices.getUrl()+"/patientdisease", {headers: AppServices.getHeaders()});
         console.log(response.data);
         setPatients(response.data);
       } catch (error) {
