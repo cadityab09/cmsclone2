@@ -113,7 +113,7 @@ const ClinicRoomManagement = () => {
 
   const searchPatient = async () => {
     // Simulate API call to search patient by ID
-    const patient = await (await axios.get(`http://localhost:8084/api/patients/${modalData.patientId}`)).data;
+    const patient = await (await axios.get(AppServices.getUrl()+`/patients/${modalData.patientId}`, {headers: AppServices.getHeaders()} )).data;
 
     console.log(patient);
 
@@ -160,13 +160,13 @@ const ClinicRoomManagement = () => {
     console.log(modalData)
       try {
         // API call to save patient data in the database
-        const response = await axios.post("http://localhost:8084/api/beds/assign", {
+        const response = await axios.post(AppServices.getUrl+"/beds/assign", {
           bedId,
           patientId,
           patientName,
           assignedAt, // Send the assignedAt automatically
           patientProblem
-        });
+        }, {headers: AppServices.getHeaders()} );
 
         // Update the UI after successful API call
         setBeds((prevBeds) =>
@@ -189,7 +189,7 @@ const ClinicRoomManagement = () => {
       // API call to update the bed status to available in the database
       console.log(bed);
       // Update UI after successful discharge
-      const data = (await axios.post("http://localhost:8084/api/beds/discharge", bed )).data;
+      const data = (await axios.post(AppServices.getUrl+"/beds/discharge", bed, {headers: AppServices.getHeaders()} )).data;
       // setBeds(data);
       setBeds((prevBeds) =>
         prevBeds.map((bed1) =>

@@ -74,6 +74,8 @@ const DummyDoctorsData = () => {
     <div className="dummy-doctor-view">
       <div className="dummy-doctor-card-list">
         <h1>Our Doctors</h1>
+        <p style={{fontFamily: "ui-rounded", fontWeight: "bold"}} className="mb-0">Meet our team of highly skilled and compassionate doctors, specializing in diverse fields to provide you with personalized and exceptional care.</p>
+
         <div className="dummy-imagescard mt-4">
           {/* Swiper Component */}
           <Swiper
@@ -140,7 +142,7 @@ const DummyDoctorsData = () => {
         >
           <div
             id="modal-content"
-            className="modal-content bg-white rounded-3 p-4 position-relative"
+            className="modal-content bg-white rounded-3 p-4 position-relative dummy-doctor-model-content"
             style={{ maxWidth: "500px" }}
           >
             <button

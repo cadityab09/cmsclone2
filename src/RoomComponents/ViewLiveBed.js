@@ -50,7 +50,7 @@ const ViewLiveBed = () => {
                       <td>{record.mobileNumber}</td>
                       
                       <td>{record.assignedAt}</td>
-                      <td>{record.dischargeTime || "Still Occupied"}</td>
+                      <td>{record.dischargeTime || (record.assignedAt!=null?"Still Occupied":"")}</td>
                     </tr>
                   ))}
                 </tbody>

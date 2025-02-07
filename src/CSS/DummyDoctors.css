@@ -15,6 +15,9 @@
 .dummy-doctor-list-item {
   width: 100%;
   min-width: 200px;
+  justify-content: center;
+    display: flex;
+    padding-bottom: 20px;
 }
 
 /* Individual Doctor Card */
@@ -23,13 +26,24 @@
   margin: 20px auto;
   max-width: 350px;
   min-width: 250px;
-  min-height: 70%;
+  min-height: 75%;
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* ddemd */
+min-width: 250px;
+  margin: 10px;
+  padding: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
+  border: 2px solid grey;
+  
 }
 
 .dummy-imagescard {
@@ -155,17 +169,21 @@
   background-color: #f9f9f9;
 }
 
+.dummy-doctor-model-content {
+  height: fit-content !important;
+}
+
 
 /* swipper */
 .swiper-pagination-fraction,
 .swiper-pagination-custom,
 .swiper-horizontal>.swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-  bottom: var(--swiper-pagination-bottom, 2px) !important;
+  bottom: var(--swiper-pagination-bottom, 3px) !important;
 }
 
 .swiper-wrapper {
-  /* gap: 5px; */
+  gap: 2px;
   display: flex;
   justify-content: space-evenly;
 }
