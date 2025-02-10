@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import "../CSS/EnquiryFormMap.css";
+import axios from "axios";
+import AppServices from "../services/AppServices";
 
 // Styles for the Google Map container
 const containerStyle = {
@@ -18,6 +20,7 @@ export default function EnquiryFormMap() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    mobile: "",
     message: "",
   });
 
@@ -29,14 +32,20 @@ export default function EnquiryFormMap() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const data = await axios.post(AppServices.getUrl()+"/enquiry/add",formData); // Fetch from the backend
+
+    } catch (error) {
+      console.error("Error while sending enquiry:", error);
+    }
     console.log("Enquiry submitted:", formData);
   };
 
-  if (loadError) {
-    return <div className="enquiry-container">Failed to load Google Maps</div>;
-  }
+  // if (loadError) {
+  //   return <div className="enquiry-container">Failed to load Google Maps</div>;
+  // }
 
   return (
     <div className="enquiry-container">
@@ -57,6 +66,14 @@ export default function EnquiryFormMap() {
             name="email"
             placeholder="Your Email"
             value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="mobile"
+            placeholder="Your Mobile"
+            value={formData.mobile}
             onChange={handleChange}
             required
           />

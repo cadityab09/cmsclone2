@@ -33,6 +33,7 @@ import doc4 from '../assets/img/doc4.jpg';
 import doc5 from '../assets/img/doc5.jpg';
 import doc6 from '../assets/img/doc6.jpg';
 import PageNotFound from '../component/pagenotfound/PageNotFound';
+import ViewEnquiry from './ViewEnquiry';
 
 function DoctorView() {
     const [sideNavStatus, setSideNavStatus] = useState(false);
@@ -226,7 +227,7 @@ function DoctorView() {
                                 <Route path="/list-appointment" element={<Appointment />} />
                                 <Route path="/view-appointment/:id" element={<AppointmentViewById />} />
                                 <Route path="/edit-appointment/:id" element={<AppointmentUpdate />} />
-                                <Route path="/AddEnquiry" element={<AddEnquiry />} />
+                                <Route path="/AddEnquiry" element={<ViewEnquiry />} />
                                 <Route path="/add-room" element={<Room />} />
                                 <Route path="/view-live-bed" element={<ViewLiveBed/>}/>
                                 <Route path="/view-room-history" element={<Roomhistory/>}/>
