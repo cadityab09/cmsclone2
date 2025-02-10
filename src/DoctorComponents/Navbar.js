@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../DoctorCSS/Navbar.css";
 import { FaRegUserCircle } from 'react-icons/fa';
+import UserStorageService from '../services/UserStorageService';
 
 function Navbar({ changeSideNavStatus }) {
 
@@ -48,7 +49,7 @@ function Navbar({ changeSideNavStatus }) {
                                 </div>
                                 <div className="popup-container">
                                     <div className="popup-box">
-                                        <p>Welcome, User!</p>
+                                        <p>Welcome, {UserStorageService.getUserName() ?? "user"}</p>
                                         <ul>
                                             <li>Profile</li>
                                             <li>Settings</li>

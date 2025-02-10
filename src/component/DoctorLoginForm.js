@@ -31,7 +31,8 @@ const DoctorLoginForm = () => {
             if(res.data != null){
                 console.log(res);
                 const user = {
-                  id: res.data.username,
+                  id: res.data.id,
+                  username: res.data.userName,
                   role: res.data.userRole
                 }
         

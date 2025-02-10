@@ -30,6 +30,14 @@ class AppServices {
     );
   }
 
+  async getAllDoctorsLightly() {
+    return this.handleRequest(() =>
+      axios.get(`${BASE_REST_API_URL}/doctors/lightly`, {
+        headers: this.getHeaders(),
+      })
+    );
+  }
+
   /**
    * Update the status of a doctor
    * @param {string} id - Doctor ID

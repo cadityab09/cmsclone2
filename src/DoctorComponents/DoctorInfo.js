@@ -13,7 +13,7 @@ const DoctorsInfo = () => {
   // Fetch doctors from the database
   const fetchDoctors = async () => {
     try {
-      const data = await AppServices.getAllDoctors(); // Fetch from the backend
+      const data = await AppServices.getAllDoctorsLightly(); // Fetch from the backend
       setDoctors(data);
     } catch (error) {
       console.error("Error fetching doctors:", error);
@@ -170,11 +170,11 @@ const DoctorsInfo = () => {
         </div>
       </div>
 
-      <div className="mt-4 text-center">
+      {/* <div className="mt-4 text-center">
         <button className="btn btn-primary" onClick={viewEnabledDoctors}>
           View Enabled Doctors
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
