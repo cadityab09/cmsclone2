@@ -1,7 +1,7 @@
 .why-choose {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 40px;
   background-color: #f0f8ff;
   border-radius: 8px;
@@ -46,10 +46,16 @@
   font-weight: bold;
 }
 
+.why-choose-image {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
 .why-choose-image img {
   max-width: 100%;
   border-radius: 8px;
   height: 430px; /* This will maintain a fixed height for larger screens */
+  min-width: 300px;
 }
 
 /* Media Queries */
@@ -96,5 +102,18 @@
 
   .why-choose-image img {
     max-height: 300px; /* Adjust the image size on very small screens */
+  }
+}
+@media (min-width: 1280px) {
+
+  .why-choose-image img {
+    min-width:  600px;
+  }
+}
+@media (max-width: 360px) {
+
+  .why-choose-image img {
+    min-width:  250px;
+    min-height:  250px;
   }
 }

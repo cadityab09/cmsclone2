@@ -40,42 +40,42 @@ function DoctorView() {
 
 
     const subpatient = [
-      { number: '1', name: 'Add patient', icon: 'fas fa-user-plus', url: '/DoctorDashboard/add-patient', isSubitem: false },
-      { number: '2', name: 'view-patient-info', icon: 'fas fa-user-circle', url: '/DoctorDashboard/AllPatient' },
-      { number: '3', name: 'add-patient-desa', icon: 'fas fa-notes-medical', url: '/DoctorDashboard/AllPatientDise' },
-      { number: '4', name: 'view-patient-desa', icon: 'fas fa-clipboard-list', url: '/DoctorDashboard/viewPatientDise' },
+      { number: '1', name: 'Add patient', icon: 'fas fa-user-plus', url: '/NurseDashboard/add-patient', isSubitem: false },
+      { number: '2', name: 'view-patient-info', icon: 'fas fa-user-circle', url: '/NurseDashboard/AllPatient' },
+      { number: '3', name: 'add-patient-desa', icon: 'fas fa-notes-medical', url: '/NurseDashboard/AllPatientDise' },
+      { number: '4', name: 'view-patient-desa', icon: 'fas fa-clipboard-list', url: '/NurseDashboard/viewPatientDise' },
   ];
   
   const subappointment = [
-      { number: '4', name: 'Create Appointment', icon: 'far fa-calendar-plus', url: '/DoctorDashboard/create-appointment' },
-      { number: '5', name: 'View-Appointment', icon: 'far fa-calendar-alt', url: '/DoctorDashboard/list-appointment' },
+      { number: '4', name: 'Create Appointment', icon: 'far fa-calendar-plus', url: '/NurseDashboard/create-appointment' },
+      { number: '5', name: 'View-Appointment', icon: 'far fa-calendar-alt', url: '/NurseDashboard/list-appointment' },
   ];
   
   const subservice = [
-      { number: '1', name: 'Create Service', icon: 'fas fa-tools', url: '/DoctorDashboard/create-service' },
-      { number: '2', name: 'View Service', icon: 'fas fa-concierge-bell', url: '/DoctorDashboard/view-service' },
+      { number: '1', name: 'Create Service', icon: 'fas fa-tools', url: '/NurseDashboard/create-service' },
+      { number: '2', name: 'View Service', icon: 'fas fa-concierge-bell', url: '/NurseDashboard/view-service' },
   ];
   
   const subdoctor = [
-      { number: '1', name: 'Add Doctor', icon: 'fas fa-user-md', url: '/DoctorDashboard/add-doctor' },
-      { number: '2', name: 'View Doctor', icon: 'fas fa-stethoscope', url: '/DoctorDashboard/view-doctor' },
-      { number: '4', name: 'View Active Doctor', icon: 'fas fa-user-check', url: '/DoctorDashboard/view-active-doctor' },
+      { number: '1', name: 'Add Doctor', icon: 'fas fa-user-md', url: '/NurseDashboard/add-doctor' },
+      { number: '2', name: 'View Doctor', icon: 'fas fa-stethoscope', url: '/NurseDashboard/view-doctor' },
+      { number: '4', name: 'View Active Doctor', icon: 'fas fa-user-check', url: '/NurseDashboard/view-active-doctor' },
   ];
   
   const subroom = [
-      { number: '1', name: 'Add Room', icon: 'fas fa-bed', url: '/DoctorDashboard/add-room' },
-      { number: '2', name: 'View live Room', icon: 'fas fa-procedures', url: '/DoctorDashboard/view-live-bed' },
-      { number: '3', name: 'View Room History', icon: 'fas fa-history', url: '/DoctorDashboard/view-room-history' },
+      { number: '1', name: 'Add Room', icon: 'fas fa-bed', url: '/NurseDashboard/add-room' },
+      { number: '2', name: 'View live Room', icon: 'fas fa-procedures', url: '/NurseDashboard/view-live-bed' },
+      { number: '3', name: 'View Room History', icon: 'fas fa-history', url: '/NurseDashboard/view-room-history' },
   ];
   
   const [menuItems, setMenuItems] = useState([
-      { number: '1', name: 'dashboard', icon: 'fas fa-tachometer-alt', url: '/DoctorDashboard', isSubitem: false },
-      { number: '2', name: 'patient', icon: 'fas fa-user-friends', url: '/DoctorDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
-      { number: '4', name: 'Appointment', icon: 'far fa-clock', url: '/DoctorDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
-      { number: '5', name: 'view Enquiries', icon: 'fas fa-question', url: '/DoctorDashboard/AddEnquiry', isSubitem: false },
-      { number: '6', name: 'room', icon: 'fas fa-door-open', url: '/DoctorDashboard/room', isSubitem: true, subitem: subroom, isExpanded: false },
-      // { number: '7', name: 'Service', icon: 'fas fa-concierge-bell', url: '/DoctorDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
-      { number: '8', name: 'Doctors', icon: 'fas fa-user-nurse', url: '/DoctorDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
+      { number: '1', name: 'dashboard', icon: 'fas fa-tachometer-alt', url: '/NurseDashboard', isSubitem: false },
+      { number: '2', name: 'patient', icon: 'fas fa-user-friends', url: '/NurseDashboard/add-patient', isSubitem: true, subitem: subpatient, isExpanded: false },
+      { number: '4', name: 'Appointment', icon: 'far fa-clock', url: '/NurseDashboard/create-appointment', isSubitem: true, subitem: subappointment, isExpanded: false },
+      { number: '5', name: 'view Enquiries', icon: 'fas fa-question', url: '/NurseDashboard/AddEnquiry', isSubitem: false },
+      { number: '6', name: 'room', icon: 'fas fa-door-open', url: '/NurseDashboard/room', isSubitem: true, subitem: subroom, isExpanded: false },
+      // { number: '7', name: 'Service', icon: 'fas fa-concierge-bell', url: '/NurseDashboard/room', isSubitem: true, subitem: subservice, isExpanded: false },
+      // { number: '8', name: 'Doctors', icon: 'fas fa-user-nurse', url: '/NurseDashboard/room', isSubitem: true, subitem: subdoctor, isExpanded: false },
   ]);
   
     

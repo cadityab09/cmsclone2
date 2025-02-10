@@ -50,7 +50,7 @@ const AssignedPatientsList = () => {
                       <td>{record.mobileNumber}</td>
                       
                       <td>{record.assignedAt}</td>
-                      <td>{record.dischargedAt || "Still Occupied"}</td>
+                      <td>{record.dischargedAt || "Not discharged yet"}</td>
                     </tr>
                   ))}
                 </tbody>
