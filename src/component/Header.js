@@ -46,11 +46,11 @@ const Header = ({ isMainMenuOpen, setisMainMenuOpen, scollTODoctor, scrollToWhyC
 
   // Fetching specialties and doctors data from API
   useEffect(() => {
-    axios.get('http://localhost:8084/api/doctors')
+    axios.get(AppServices.getUrl()+'/doctors/lightly')
       .then(response => {
         const doctorsData = response.data;
         const uniqueSpecialties = [...new Set(doctorsData.map(doc => doc.specialties))];
-
+        console.log(doctorsData);
         setSpecialties(uniqueSpecialties);
         setDoctors(doctorsData);
       })

@@ -36,6 +36,11 @@ const UserStorageService = {
     return user ? user.role : '';
   },
 
+  getUserName: () => {
+    const user = UserStorageService.getUser();
+    return user ? user.username : 'user';
+  },
+
   isAdminLoggedIn: () => {
     if (!UserStorageService.getToken()) {
       return false;
