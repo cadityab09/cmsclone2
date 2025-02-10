@@ -1,19 +1,20 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Mauli Hospital",
+  "name": "Mauli Hospital App",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/assets/Images/mauli_logo.webp",
+      "sizes": "94x94 32x32 24x24 16x16",
+      "type": "image/webp"
+    
     },
     {
-      "src": "logo192.png",
+      "src": "/assets/Images/mauli_logo.webp",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "/assets/Images/mauli_logo.webp",
       "type": "image/png",
       "sizes": "512x512"
     }

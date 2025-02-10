@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../rec-css/AddEnquiries.css';
+import '../DoctorCSS/AddEnquiries.css';
 
 function AddEnquiry() {
   const [enquiryData, setEnquiryData] = useState({

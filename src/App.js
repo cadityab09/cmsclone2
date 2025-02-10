@@ -16,7 +16,7 @@ import Login from './component/DoctorLoginForm';
 import Doctordashboard from './DoctorComponents/DoctorView';
 import NurseLoginForm from '../src/component/NurseLoginForm'
 import Map from './component/enquiries&Map'
-// import NurseDashboard from '../src/component/Nursedashboard'
+import NurseDashboard from './ReceptionistComponent/NurseView';
 // import DoctorsInfo from './component/DoctorsInfo'
 // import DashboardOverview from '../src/DoctorComponents/DashboardOverview';
 // import AddPatient from '../src/DoctorComponents/AddPatient';
@@ -130,7 +130,7 @@ function App() {
           <Route path="/DoctorLoginForm" element={<DoctorLoginForm />} /> 
           <Route path="/DoctorDashboard/*" element={<Doctordashboard/>} /> 
           <Route path="/NurseLoginForm" element={<NurseLoginForm />} />
-          {/* <Route path="/Nursedashboard/*" element={<Nursedashboard/>} /> */}
+          <Route path="/Nursedashboard/*" element={<NurseDashboard/>} />
           {/* <Route path="/AllPatient" element={<AllPatient/>} />
           <Route path="/add-patient" element={<AddPatient />} /> */}
           {/* <Route path="/create-appointment" element={<CreateAppointment />} /> */}

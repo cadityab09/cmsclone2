@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-company-info">
         <img src={Maulilogo} alt="Mauli Hospital" className="footer-logo"/>
         <div className="info-item">
-              <span className="info-label">Company name</span>
+              {/* <span className="info-label">Hospital </span> */}
               <p>Mauli Hospital</p>
             </div>
             
@@ -48,43 +48,30 @@ const Footer = () => {
             <h3>Specialities</h3>
             <ul>
               <li><a href="#cardiology">Cardiology</a></li>
-              <li><a href="#cardiac-surgery">Cardiac surgery</a></li>
-              <li><a href="#oncology">Oncology</a></li>
-              {/* <li><a href="#neurology">Neurology</a></li>
-              <li><a href="#neurosurgery">Neurosurgery</a></li>
-              <li><a href="#orthopedic">Orthopedic</a></li>
-              <li><a href="#gastroenterology">Gastroenterology</a></li> */}
-              {/* <li><a href="#liver-transplant">Liver Transplant</a></li>
-              <li><a href="#general-surgery">General Surgery</a></li>
-              <li><a href="#critical-care">Critical Care</a></li>
-              <li><a href="#haemotology">Haemotology & Bone Marrow</a></li>
-              <li><a href="#obstetrics">Obstetrics & Gynecology</a></li>
-              <li><a href="#ivf">IVF</a></li>
-              <li><a href="#paediatrics">Paediatrics</a></li>
-              <li><a href="#endocrinology">Endocrinology</a></li>
-              <li><a href="#kidney-transplant">Kidney Transplant</a></li>
-              <li><a href="#spine-surgery">Spine Surgery</a></li>
-              <li><a href="#urology">Urology</a></li> */}
+              <li><a href="#cardiac-surgery">Dentist</a></li>
+              <li><a href="#oncology">Neurology</a></li>
+              <li><a href="#oncology">Ophthalmology</a></li>
             </ul>
           </div>
 
           <div className="footer-section">
-            <h3>Academics & Research</h3>
+            <h3>Our Hospital</h3>
             <ul>
-              <li><a href="#courses">Courses</a></li>
-              <li><a href="#clinical-research">Clinical Research</a></li>
-              <li><a href="#genetics">Genetics</a></li>
+            <li><a href="#genetics">labs</a></li>
+              <li><a href="#courses">Expert Staff</a></li>
+              <li><a href="#clinical-research">10+ Experiance</a></li>
+             
             </ul>
 
             
           </div>
           <div className="footer-section">
-          <h3>Medical Procedures</h3>
+          <h3>Our Doctors</h3>
             <ul>
-              <li><a href="#cancer-treatment">Advance Cancer Treatment</a></li>
-              <li><a href="#bone-marrow">Bone Marrow Transplant</a></li>
-              {/* <li><a href="#liver-transplant">Liver Transplant</a></li> */}
-              <li><a href="#micro-surgery">Hand Micro Surgery</a></li>
+              <li><a href="#cancer-treatment">10+ Experiance Cardiology</a></li>
+              <li><a href="#bone-marrow">Neurology</a></li>
+             
+              <li><a href="#micro-surgery">Dentist</a></li>
               
             </ul>
           </div>
@@ -92,9 +79,10 @@ const Footer = () => {
           <div className="footer-section">
             <h3>Patient Care</h3>
             <ul>
+            <li><a href="#medical-services">lab Services</a></li>
               <li><a href="#find-doctor">Find A Doctor</a></li>
               <li><a href="#book-appointment">Book Appointment</a></li>
-              <li><a href="#medical-services">Medical Services</a></li>
+              
             
             </ul>
 
@@ -139,4 +127,4 @@ const Footer = () => {
   );
 };
 
-export default Footer; 
+export default Footer;
