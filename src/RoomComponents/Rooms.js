@@ -9,22 +9,28 @@ import AppServices from "../services/AppServices";
 
 const Room = ({ bed, openModal, handleDischarge }) => {
   return (
-    <div className="room-card-col">
+    <div className="room-card-col ">
       <div
         className={`card clinic-card ${bed.status === "AVAILABLE" ? "bg-light" : "bg-green text-white"
           }`}
       >
         <div className="card-body">
           <h5 className="card-title clinic-title">Bed {bed.bedId}</h5>
-          <p className="card-text">Status: {bed.status}</p>
-          {bed.status === "UNAVAILABLE" && (
+          <p className="card-text">Status: <b>{bed.status}</b></p>
+          {bed.status === "UNAVAILABLE" ? (
             <>
               <p className="card-text">Patient: {bed.patientName}</p>
               <p className="card-text">Problem: {bed.patientProblem}</p>
-              <p className="card-text">Mobile Number: {bed.mobileNumber}</p> 
+              <p className="card-text">Mobile Number: {bed.mobileNumber}</p>
               <p className="card-text">Occupied Time: {bed.assignedAt}</p>
             </>
-          )}
+          ): 
+          <>
+            <div className="" style={{marginTop: "64px"}}>
+              <i className="fa-solid fa-bed"  style={{fontSize: "100px",    color: "#d5d2fa"}}></i>
+            </div>
+          </>
+          }
         </div>
         <div className="card-footer">
           {bed.status === "AVAILABLE" ? (
@@ -52,15 +58,15 @@ const ClinicRoomManagement = () => {
 
   const fetchBeds = async () => {
     try {
-      const response = await axios.get(AppServices.getUrl()+`/beds/status`, {headers: AppServices.getHeaders()});
+      const response = await axios.get(AppServices.getUrl() + `/beds/status`, { headers: AppServices.getHeaders() });
       const data = await response.data;
-      console.log(data);  
+      console.log(data);
       return data; // Assume the API returns a structure like { beds: [...] }
     } catch (error) {
       console.error("Error fetching beds:", error);
       return []; // Return empty array in case of error
     }
-  }; 
+  };
 
   // const [beds, setBeds] = useState(
   //   Array.from({ length: 40 }, (_, index) => ({
@@ -113,19 +119,23 @@ const ClinicRoomManagement = () => {
 
   const searchPatient = async () => {
     // Simulate API call to search patient by ID
-    const patient = await (await axios.get(AppServices.getUrl()+`/patients/${modalData.patientId}`, {headers: AppServices.getHeaders()} )).data;
+    try {
+      const patient = await (await axios.get(AppServices.getUrl() + `/patients/${modalData.patientId}`, { headers: AppServices.getHeaders() })).data;
 
-    console.log(patient);
+      console.log(patient);
 
-    if (patient) {
-      setModalData((prevData) => ({
-        ...prevData,
-        patientName: patient.name,
-        // patientProblem: patient.patientProblem,
-        patientFound: true,
-      }));
-    } else {
-      alert("Patient not found!");
+      if (patient) {
+        setModalData((prevData) => ({
+          ...prevData,
+          patientName: patient.name,
+          // patientProblem: patient.patientProblem,
+          patientFound: true,
+        }));
+      } else {
+        alert("Patient not found!");
+      }
+    } catch (error) {
+      alert("Error: " + error);
     }
   };
 
@@ -142,7 +152,7 @@ const ClinicRoomManagement = () => {
       show: false,
       bedId: null,
       patientName: "",
-      patientProblem: "", 
+      patientProblem: "",
       mobileNumber: "",
       assignedAt: "",
     });
@@ -155,33 +165,34 @@ const ClinicRoomManagement = () => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const { bedId,patientId,assignedDate,assignedAt,patientName, patientProblem } = modalData;
+    const { bedId, patientId, assignedDate, assignedAt, patientName, patientProblem } = modalData;
 
     console.log(modalData)
-      try {
-        // API call to save patient data in the database
-        const response = await axios.post(AppServices.getUrl+"/beds/assign", {
-          bedId,
-          patientId,
-          patientName,
-          assignedAt, // Send the assignedAt automatically
-          patientProblem
-        }, {headers: AppServices.getHeaders()} );
+    try {
+      // API call to save patient data in the database
+      const response = await axios.post(AppServices.getUrl() + "/beds/assign", {
+        bedId,
+        patientId,
+        patientName,
+        assignedAt, // Send the assignedAt automatically
+        patientProblem
+      }, { headers: AppServices.getHeaders() });
 
-        // Update the UI after successful API call
-        setBeds((prevBeds) =>
-          prevBeds.map((bed) =>
-            bed.bedId === bedId
-              ? response.data
-              : bed
-          )
-        );
-        alert("Patient assigned successfully!");
-        closeModal();
-      } catch (error) {
-        console.error("Error assigning patient:", error);
-        alert("Failed to assign patient. Please try again.");
-      }
+      // Update the UI after successful API call
+      console.log(response.data);
+      setBeds((prevBeds) =>
+        prevBeds.map((bed) =>
+          bed.bedId === bedId
+            ? response.data
+            : bed
+        )
+      );
+      alert("Patient assigned successfully!");
+      closeModal();
+    } catch (error) {
+      console.error("Error assigning patient:", error);
+      alert("Failed to assign patient. Please try again.");
+    }
   };
 
   const handleDischarge = async (bed) => {
@@ -189,7 +200,7 @@ const ClinicRoomManagement = () => {
       // API call to update the bed status to available in the database
       console.log(bed);
       // Update UI after successful discharge
-      const data = (await axios.post(AppServices.getUrl+"/beds/discharge", bed, {headers: AppServices.getHeaders()} )).data;
+      const data = (await axios.post(AppServices.getUrl + "/beds/discharge", bed, { headers: AppServices.getHeaders() })).data;
       // setBeds(data);
       setBeds((prevBeds) =>
         prevBeds.map((bed1) =>

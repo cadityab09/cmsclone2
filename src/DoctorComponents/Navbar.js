@@ -9,7 +9,11 @@ function Navbar({ changeSideNavStatus }) {
 
     const [isExpandedUser, setIsExpandedUser] = useState(false);
 
-    const expandedUserFunc=()=>{
+    const expandedUserFunc = () => {
+        setIsExpandedUser(prev => !prev);
+    }
+
+    const closeModal = () => {
         setIsExpandedUser(prev => !prev);
     }
 
@@ -32,25 +36,32 @@ function Navbar({ changeSideNavStatus }) {
                         </a>
                         {isExpandedUser && (
                             <div className='user-info-popup'>
-                                    <div className='usericon-div'>
-                                    <FaRegUserCircle className="popup-icon"  />   
-                                    </div>   
-                                    <div className="popup-container">
-                                        <div className="popup-box">
-                                            <p>Welcome, User!</p>
-                                            <ul>
-                                                <li>Profile</li>
-                                                <li>Settings</li>
-                                            
-                                            </ul>
-                                           
-                                        </div>
-                                        <Link to="/">
-                                            <button className='logout-btn'>
-                                                    Logout
-                                            </button>
-                                        </Link>
-                                        
+                                <button
+                                    id="modal-close-btn"
+                                    className="btn-close position-absolute top-0 start-0 mt-2 ms-2"
+                                    style={{color:"white"}}
+                                    aria-label="Close"
+                                    onClick={closeModal}
+                                ></button>
+                                <div className='usericon-div'>
+                                    <FaRegUserCircle className="popup-icon" />
+                                </div>
+                                <div className="popup-container">
+                                    <div className="popup-box">
+                                        <p>Welcome, User!</p>
+                                        <ul>
+                                            <li>Profile</li>
+                                            <li>Settings</li>
+
+                                        </ul>
+
+                                    </div>
+                                    <Link to="/">
+                                        <button className='logout-btn'>
+                                            Logout
+                                        </button>
+                                    </Link>
+
                                 </div>
                             </div>
                         )}
