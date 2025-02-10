@@ -200,7 +200,7 @@ const ClinicRoomManagement = () => {
       // API call to update the bed status to available in the database
       console.log(bed);
       // Update UI after successful discharge
-      const data = (await axios.post(AppServices.getUrl + "/beds/discharge", bed, { headers: AppServices.getHeaders() })).data;
+      const data = (await axios.post(AppServices.getUrl() + "/beds/discharge", bed, { headers: AppServices.getHeaders() })).data;
       // setBeds(data);
       setBeds((prevBeds) =>
         prevBeds.map((bed1) =>
